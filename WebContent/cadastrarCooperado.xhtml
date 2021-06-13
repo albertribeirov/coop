@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Cadastro de Cooperados</title>
+</h:head>
+
+<h:body>
+
+    <ui:decorate template="decorator.xhtml"/>
+    <h:outputScript library="scripts" name="pt.js"/>
+    <h:outputScript library="scripts" name="functions.js"/>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:form id="form_cooperado" prependId="false">
+        <p:inputText value="#{cooperadoBean.cooperado.id}" id="idCooperadoHidden" type="hidden"/>
+        <p:inputText value="#{cooperadoBean.endereco.id}" id="idEnderecoCooperadoHidden" type="hidden"/>
+        <p:growl for="message" sticky="true" showDetail="true" life="4000"/>
+
+        <br/>
+        <p:fieldset legend="Dados">
+            <h:panelGrid columns="6">
+
+                <p:outputLabel for="nomeCooperado"
+                               value="Nome"/>
+                <p:inputText id="nomeCooperado"
+                             style="width:350px"
+                             value="#{cooperadoBean.cooperado.nomeCompleto}"
+                             size="80"
+                             required="true"
+                             placeholder="Ex: Marcos da Silva"
+                             requiredMessage="O nome deve ser preenchido."/>
+
+                <p:outputLabel for="cpf"
+                               value="CPF"
+                               style="size:50px"/>
+                <p:inputMask id="cpf"
+                             value="#{cooperadoBean.cooperado.cpf}"
+                             size="20"
+                             mask="999.999.999-99"
+                             required="true"
+                             converter="converterCPF">
+                    <p:tooltip id="tipCPF" for="cpf" value="O CPF deve ter 11 dígitos" position="top"/>
+                </p:inputMask>
+
+                <p:outputLabel for="telefone1"
+                               value="Telefone 1"/>
+                <p:inputMask id="telefone1"
+                             value="#{cooperadoBean.telefone}"
+                             mask="(99)9-9999-9999"
+                             required="false"
+                             converter="converterTelefone"
+                             requiredMessage="O telefone 1 deve ser preenchido."/>
+
+                <p:outputLabel for="ativo"
+                               value="Ativo  "/>
+                <p:inputSwitch id="ativo"
+                               required="true"
+                               offLabel="Não"
+                               onLabel="Sim"
+                               value="#{cooperadoBean.cooperado.ativo}"/>
+
+            </h:panelGrid>
+        </p:fieldset>
+
+        <br/>
+
+        <p:fieldset legend="Endereço">
+            <h:panelGrid columns="8">
+                <p:outputLabel for="ruaComNumero"
+                               value="Rua"/>
+                <p:inputText placeholder="Ex: Rua Doutor Pierre Collier, 666"
+                             id="ruaComNumero"
+                             value="#{cooperadoBean.endereco.ruaComNumero}"
+                             style="width:350px"
+                             required="false"/>
+
+                <p:outputLabel for="bairro"
+                               value="Bairro"/>
+                <p:inputText placeholder="Ex: Vila da Fábrica"
+                             id="bairro"
+                             value="#{cooperadoBean.endereco.bairro}"
+                             size="30"
+                             required="false"/>
+
+                <p:outputLabel for="cidade"
+                               value="Cidade"/>
+                <p:inputText placeholder="Ex: Camaragibe"
+                             id="cidade"
+                             value="#{cooperadoBean.endereco.cidade}"
+                             size="30"
+                             required="false"/>
+
+                <p:outputLabel for="cep"
+                               value="CEP"/>
+                <p:inputMask mask="99.999-999"
+                             id="cep"
+                             converter="converterCEP"
+                             value="#{cooperadoBean.endereco.cep}"
+                             style="width:90px"
+                             required="false"/>
+
+            </h:panelGrid>
+        </p:fieldset>
+
+        <br/>
+
+        <p:fieldset legend="Observações">
+            <h:panelGrid>
+                <p:inputTextarea id="cooperadoObservacao"
+                                 rows="6"
+                                 cols="120"
+                                 maxlength="500"
+                                 counter="display"
+                                 counterTemplate="{0} caracteres restantes."
+                                 autoResize="true"
+                                 value="#{cooperadoBean.cooperado.observacao}"
+                                 required="false"/>
+                <h:outputText id="display"/>
+            </h:panelGrid>
+        </p:fieldset>
+    </h:form>
+
+    <p:commandButton icon="ui-icon-disk"
+                     id="salvarButton"
+                     value="Salvar"
+                     action="#{cooperadoBean.salvar}"
+                     style="margin: 10px"
+                     update="form_cooperado"/>
+    <p:commandButton icon="ui-icon ui-icon-circle-close"
+                     id="cancelarButton"
+                     value="Cancelar"
+                     action="#{cooperadoBean.cancelar}"
+                     style="margin: 10px"
+                     update="form_cooperado"/>
+
+    <h:panelGroup>
+        <h:form>
+            <p:dataTable value="#{cooperadoBean.cooperados}" var="cooperado">
+                <f:facet name="header">Lista de Cooperados</f:facet>
+
+                <p:column width="2%">
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{cooperado.id}"/>
+                </p:column>
+
+                <p:column width="14%">
+                    <f:facet name="header">Nome</f:facet>
+                    <h:outputText value="#{cooperado.nomeCompleto}" title="#{cooperado.observacao}"/>
+                </p:column>
+
+                <p:column width="10%">
+                    <f:facet name="header">CPF</f:facet>
+                    <h:outputText value="#{cooperado.cpf}">
+                        <f:converter converterId="converterCPF"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column width="20%">
+                    <f:facet name="header">Endereço</f:facet>
+                    <h:outputText value="#{cooperado.endereco.ruaComNumero}"/>
+                </p:column>
+
+                <p:column width="7%">
+                    <f:facet name="header">Ações</f:facet>
+                    <h:commandLink action="#{cooperadoBean.alterar(cooperado.id)}">Alterar</h:commandLink>
+                    |
+                    <h:commandLink action="#{cooperadoBean.excluir(cooperado.id)}"
+                                   onclick="return excluir();">Excluir</h:commandLink>
+
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </h:panelGroup>
+</h:body>
+</html>

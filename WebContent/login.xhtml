@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Login</title>
+	<style type="text/css">
+body {
+	text-align: center;
+}
+
+form {
+	display: inline-block;
+	padding-top: 150px;
+}
+</style>
+</h:head>
+<h:body>
+	<h:outputScript library="scripts" name="pt.js" />
+	<h:outputScript library="scripts" name="functions.js" />
+	<h:outputStylesheet library="css" name="styles.css" />
+	<h:form id="form">
+		<p:growl for="message" id="message" sticky="false" showDetail="true" life="4000" />
+
+		<p:panel>
+			<h:panelGrid columns="2">
+
+				<h:panelGrid columns="1">
+
+					<p:outputLabel value="Usuário" />
+					<p:inputText value="#{loginBean.name}" />
+
+					<p:outputLabel value="Senha:" />
+					<p:password value="#{loginBean.password}" />
+
+				</h:panelGrid>
+
+			</h:panelGrid>
+
+			<p:commandButton value="Entrar" id="logonButton" action="#{loginBean.login}" update="form" icon="ui-icon ui-icon-suitcase" />
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

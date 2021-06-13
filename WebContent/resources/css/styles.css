@@ -1,0 +1,10 @@
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90%
+}
+
+.listagem {
+	text-align: center;
+	font: 13px Arial, sans-serif;
+	font-weight: bold;
+	color: Snow;
+}
