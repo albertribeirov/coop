@@ -15,6 +15,8 @@
         <class>br.com.cooperativa.model.TipoMaterial</class>
         <class>br.com.cooperativa.model.Endereco</class>
         <class>br.com.cooperativa.model.Telefone</class>
+        <class>br.com.cooperativa.model.MovimentacaoEstoque</class>
+        <class>br.com.cooperativa.model.Estoque</class>
 
         <properties>
 
@@ -24,14 +26,13 @@
             <property name="javax.persistence.jdbc.user" value="admin" />
             <property name="javax.persistence.jdbc.password" value="admin" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
-            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="use_sql_comments" value="true" />
             <property name="hibernate.generate_statistics" value="true"/>
             <property name="hibernate.connection.CharSet" value="utf8" />
             <property name="hibernate.connection.characterEncoding" value="utf8" />
-
 
         </properties>
     </persistence-unit>

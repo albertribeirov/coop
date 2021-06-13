@@ -1,5 +1,6 @@
 package br.com.cooperativa.service;
 
+import br.com.cooperativa.TipoMensagem;
 import br.com.cooperativa.dao.CooperadoDAO;
 import br.com.cooperativa.exception.ValidationException;
 import br.com.cooperativa.model.Cooperado;
@@ -8,7 +9,6 @@ import br.com.cooperativa.util.Constantes;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Objects;
 
 public class CooperadoService extends Service {
 
@@ -23,8 +23,8 @@ public class CooperadoService extends Service {
      *
      * @param id  Id do condomínio que será buscado no banco
      */
-    public Cooperado carregar(Integer id) {
-        return cooperadoDAO.carregar(Cooperado.class, id);
+    public Cooperado findById(Integer id) {
+        return cooperadoDAO.findById(Cooperado.class, id);
     }
 
     /**
@@ -38,15 +38,15 @@ public class CooperadoService extends Service {
             beginTransaction();
 
             if (cooperadoDAO.existeCooperadoComNome(cooperado.getNomeCompleto())) {
-                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_CLIENTE_NOME);
+                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_NOME);
             }
 
             if (cooperadoDAO.existeCooperadoComCpf(cooperado.getCpf())) {
-                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_CLIENTE_EMAIL);
+                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_CPF);
             }
 
             cooperadoDAO.salvar(cooperado);
-            logService.log("Cooperado inserido: " + cooperado.getNomeCompleto(), Log.TipoMensagem.INFO);
+            logService.log("Cooperado inserido: " + cooperado.getNomeCompleto(), TipoMensagem.INFO);
 
             commitTransaction();
 
@@ -67,15 +67,15 @@ public class CooperadoService extends Service {
             beginTransaction();
 
             if(cooperadoDAO.existeCooperadoComNome(cooperado.getNomeCompleto())) {
-                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_CLIENTE_NOME);
+                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_NOME);
             }
 
-            if(Objects.nonNull(cooperadoDAO.buscarCooperadoPorCpf(cooperado.getCpf()))) {
-                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_CLIENTE_EMAIL);
+            if (cooperadoDAO.existeCooperadoComCpf(cooperado.getCpf())) {
+                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_CPF);
             }
 
             cooperadoDAO.alterar(cooperado);
-            logService.log("Cooperado alterado: " + cooperado.getId(), Log.TipoMensagem.INFO);
+            logService.log("Cooperado alterado: " + cooperado.getId(), TipoMensagem.INFO);
 
             commitTransaction();
 
@@ -94,9 +94,9 @@ public class CooperadoService extends Service {
         try {
             beginTransaction();
 
-            Cooperado cooperado = cooperadoDAO.carregar(Cooperado.class, id);
+            Cooperado cooperado = cooperadoDAO.findById(Cooperado.class, id);
             cooperadoDAO.excluir(cooperado);
-            logService.log("Cooperado excluído: " + id, Log.TipoMensagem.INFO);
+            logService.log("Cooperado excluído: " + id, TipoMensagem.INFO);
 
             commitTransaction();
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Cadastro de Tipos de Material</title>
+</h:head>
+
+<h:body>
+
+    <ui:decorate template="decorator.xhtml"/>
+    <h:outputScript library="scripts" name="pt.js"/>
+    <h:outputScript library="scripts" name="functions.js"/>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:form id="form_tipo_material" prependId="false">
+        <p:inputText value="#{tipoMaterialBean.tipoMaterial.id}" id="idTipoMaterialHidden" type="hidden"/>
+        <p:growl for="message" sticky="false" showDetail="true" life="1000"/>
+
+        <br/>
+        <p:fieldset legend="Dados">
+            <h:panelGrid columns="6">
+
+                <p:outputLabel for="nomeTipoMaterial"
+                               value="Nome do Tipo de Material"/>
+                <p:inputText id="nomeTipoMaterial"
+                             style="width:350px"
+                             value="#{tipoMaterialBean.tipoMaterial.nome}"
+                             size="80"
+                             required="true"
+                             requiredMessage="O nome deve ser preenchido."/>
+
+            </h:panelGrid>
+        </p:fieldset>
+    </h:form>
+
+    <p:commandButton icon="ui-icon-disk"
+                     id="salvarButton"
+                     value="Salvar"
+                     action="#{tipoMaterialBean.salvar}"
+                     style="margin: 10px"
+                     update="form_tipo_material"/>
+    <p:commandButton icon="ui-icon ui-icon-circle-close"
+                     id="cancelarButton"
+                     value="Cancelar"
+                     action="#{tipoMaterialBean.cancelar}"
+                     style="margin: 10px"
+                     update="form_tipo_material"/>
+
+    <h:panelGroup>
+        <h:form>
+            <p:dataTable value="#{tipoMaterialBean.tiposMaterial}" var="tipoMaterial">
+                <f:facet name="header">
+                    <div align="center">
+                        Lista de Tipos de Material
+                    </div>
+                </f:facet>
+
+                <p:column width="2%">
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{tipoMaterial.id}"/>
+                </p:column>
+
+                <p:column width="14%">
+                    <f:facet name="header">Nome</f:facet>
+                    <h:outputText value="#{tipoMaterial.nome}"/>
+                </p:column>
+
+                <p:column width="7%">
+                    <f:facet name="header">Ações</f:facet>
+                    <h:commandLink action="#{tipoMaterialBean.alterar(tipoMaterial.id)}">Alterar</h:commandLink>
+                    |
+                    <h:commandLink action="#{tipoMaterialBean.excluir(tipoMaterial.id)}"
+                                   onclick="return excluir();">Excluir</h:commandLink>
+
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </h:panelGroup>
+</h:body>
+</html>

@@ -1,12 +1,12 @@
 package br.com.cooperativa.service;
 
 
+import br.com.cooperativa.TipoMensagem;
+import br.com.cooperativa.dao.LogDAO;
 import br.com.cooperativa.model.Log;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
-
-import br.com.cooperativa.dao.LogDAO;
 
 public class LogService extends Service {
 
@@ -22,15 +22,15 @@ public class LogService extends Service {
      * Insere uma nova mensagem de log no banco de dados
      *
      * @param mensagem Mensagem de log
-     * @param tipo     Tipo da mensagem
+     * @param tipoMensagem Enum de tipo da mensagem
      */
-    public void log(String mensagem, Log.TipoMensagem tipo) {
+    public void log(String mensagem, TipoMensagem tipoMensagem) {
         try {
             beginTransaction();
 
             Log log = new Log();
             log.setData(LocalDateTime.now());
-            log.setTipo(tipo);
+            log.setTipoMensagem(tipoMensagem);
             log.setMensagem(mensagem);
             logDAO.salvar(log);
 

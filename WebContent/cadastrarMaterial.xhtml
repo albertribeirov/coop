@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Cadastro de Materiais</title>
+</h:head>
+
+<h:body>
+
+    <ui:decorate template="decorator.xhtml"/>
+    <h:outputScript library="scripts" name="pt.js"/>
+    <h:outputScript library="scripts" name="functions.js"/>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:form prependId="false">
+        <p:inputText value="#{materialBean.material.id}" id="idMaterialHidden" type="hidden"/>
+        <p:growl for="message" sticky="false" showDetail="true" life="1000" globalOnly="false"/>
+
+        <br/>
+        <p:fieldset legend="Dados">
+            <h:panelGrid columns="2">
+
+                <p:outputLabel for="tpMaterial" value="Tipo de Material"/>
+                <p:selectOneMenu id="tpMaterial"
+                                 value="#{materialBean.material.tipoMaterial}"
+                                 converter="#{converterTipoMaterial}"
+                                 style="width:300px"
+                                 required="true">
+                    <f:selectItem itemLabel="Selecione..."
+                                  itemValue="#{c}"
+                                  noSelectionOption="true"/>
+                    <f:selectItems value="#{tipoMaterialBean.tiposMaterial}"
+                                   var="c"
+                                   itemValue="#{c}"
+                                   itemLabel="#{c.nome}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="nomeMaterial"
+                               value="Nome do Material"/>
+                <p:inputText id="nomeMaterial"
+                             style="width:350px"
+                             value="#{materialBean.material.nome}"
+                             size="30"
+                             required="true"
+                             requiredMessage="O nome deve ser preenchido."/>
+
+            </h:panelGrid>
+        </p:fieldset>
+    </h:form>
+
+    <p:commandButton icon="ui-icon-disk"
+                     id="salvarButton"
+                     value="Salvar"
+                     action="#{materialBean.salvar}"
+                     style="margin: 10px"/>
+    <p:commandButton icon="ui-icon ui-icon-circle-close"
+                     id="cancelarButton"
+                     value="Cancelar"
+                     action="#{materialBean.cancelar}"
+                     style="margin: 10px"/>
+
+    <h:panelGroup>
+        <h:form>
+            <p:dataTable value="#{materialBean.materiais}" var="mat">
+                <f:facet name="header">
+                    <div align="center">
+                        Lista de Tipos de Material
+                    </div>
+                </f:facet>
+
+                <p:column width="2%">
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{mat.id}"/>
+                </p:column>
+
+                <p:column width="14%">
+                    <f:facet name="header">Nome</f:facet>
+                    <h:outputText value="#{mat.nome}"/>
+                </p:column>
+
+                <p:column width="14%">
+                    <f:facet name="header">Tipo Material</f:facet>
+                    <h:outputText value="#{mat.tipoMaterial.nome}"/>
+                </p:column>
+
+                <p:column width="7%">
+                    <f:facet name="header">Ações</f:facet>
+                    <h:commandLink action="#{materialBean.alterar(mat.id)}">Alterar</h:commandLink>
+                    |
+                    <h:commandLink action="#{materialBean.excluir(mat.id)}"
+                                   onclick="return excluir();">Excluir</h:commandLink>
+
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </h:panelGroup>
+</h:body>
+</html>

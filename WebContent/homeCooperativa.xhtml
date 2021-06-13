@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Tela Inicial da Cooperativa</title>
+</h:head>
+
+<h:body>
+
+    <ui:decorate template="decorator.xhtml"/>
+    <h:outputScript library="scripts" name="pt.js"/>
+    <h:outputScript library="scripts" name="functions.js"/>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:form id="form_home" prependId="false">
+            <p:dataTable var="material" value="#{dtRowGroupView.customers}">
+                <p:column  headerText="Material" groupRow="true">
+                    <!--<p:graphicImage name="images/avatar/#{customer.representative.image}" library="demo"
+                                    width="32" style="vertical-align: middle"/> -->
+                    <h:outputText style="vertical-align: middle; margin-left: .5rem"
+                                  value="#{homeBean.representative.name}"/>  <!--value="#{customer.representative.name}"/>-->
+                </p:column>
+
+                <p:column headerText="Name">
+                    <h:outputText value="#{customer.name}" />
+                </p:column>
+
+                <p:column headerText="Country">
+                    <span class="flag flag-#{customer.country.code}" style="width: 30px; height: 20px"/>
+                    <h:outputText style="vertical-align: middle; margin-left: .5rem" value="#{customer.country}"/>
+                </p:column>
+
+                <p:column headerText="Company">
+                    <h:outputText value="#{customer.company}" />
+                </p:column>
+
+                <p:column headerText="Status">
+                    <span class="customer-badge status-#{customer.status.name().toLowerCase()}">#{customer.status}</span>
+                </p:column>
+
+                <p:column headerText="Date">
+                    <h:outputText value="#{customer.date}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" type="both"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+</h:body>
+</html>

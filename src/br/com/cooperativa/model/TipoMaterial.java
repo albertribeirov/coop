@@ -1,15 +1,20 @@
 package br.com.cooperativa.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tipo_material")
@@ -20,14 +25,19 @@ public class TipoMaterial implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "codigo")
-    private Integer codigo;
-
-    @OneToMany(mappedBy = "tipoMaterial", fetch = FetchType.EAGER)
-    private List<Material> material;
-
     @Column(name = "nome")
     private String nome;
+
+    @OneToMany(mappedBy = "tipoMaterial")
+    private List<Material> materiais = new ArrayList<>();
+
+    @Column(name = "create_time", nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @Column(name = "update_time", nullable = false)
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
 
     public void setId(Integer id) {
         this.id = id;
@@ -37,27 +47,53 @@ public class TipoMaterial implements Serializable {
         return id;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getTipo() {
+    public String getNome() {
         return nome;
     }
 
-    public void setTipo(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public List<Material> getMaterial() {
-        return material;
+    public List<Material> getMateriais() {
+        return materiais;
     }
 
-    public void setMaterial(List<Material> material) {
-        this.material = material;
+    public void setMateriais(List<Material> materiais) {
+        this.materiais = materiais;
+    }
+
+    public LocalDateTime getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public void setCreateDateTime(LocalDateTime createDateTime) {
+        this.createDateTime = createDateTime;
+    }
+
+    public LocalDateTime getUpdateDateTime() {
+        return updateDateTime;
+    }
+
+    public void setUpdateDateTime(LocalDateTime updateDateTime) {
+        this.updateDateTime = updateDateTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TipoMaterial that = (TipoMaterial) o;
+
+        if (!Objects.equals(id, that.id)) return false;
+        return Objects.equals(nome, that.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        return result;
     }
 }

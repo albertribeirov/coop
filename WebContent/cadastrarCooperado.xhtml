@@ -21,7 +21,7 @@
     <h:form id="form_cooperado" prependId="false">
         <p:inputText value="#{cooperadoBean.cooperado.id}" id="idCooperadoHidden" type="hidden"/>
         <p:inputText value="#{cooperadoBean.endereco.id}" id="idEnderecoCooperadoHidden" type="hidden"/>
-        <p:growl for="message" sticky="true" showDetail="true" life="4000"/>
+        <p:growl for="message" sticky="false" showDetail="true" life="1000"/>
 
         <br/>
         <p:fieldset legend="Dados">
@@ -34,7 +34,6 @@
                              value="#{cooperadoBean.cooperado.nomeCompleto}"
                              size="80"
                              required="true"
-                             placeholder="Ex: Marcos da Silva"
                              requiredMessage="O nome deve ser preenchido."/>
 
                 <p:outputLabel for="cpf"
@@ -75,24 +74,21 @@
             <h:panelGrid columns="8">
                 <p:outputLabel for="ruaComNumero"
                                value="Rua"/>
-                <p:inputText placeholder="Ex: Rua Doutor Pierre Collier, 666"
-                             id="ruaComNumero"
+                <p:inputText id="ruaComNumero"
                              value="#{cooperadoBean.endereco.ruaComNumero}"
                              style="width:350px"
                              required="false"/>
 
                 <p:outputLabel for="bairro"
                                value="Bairro"/>
-                <p:inputText placeholder="Ex: Vila da Fábrica"
-                             id="bairro"
+                <p:inputText id="bairro"
                              value="#{cooperadoBean.endereco.bairro}"
                              size="30"
                              required="false"/>
 
                 <p:outputLabel for="cidade"
                                value="Cidade"/>
-                <p:inputText placeholder="Ex: Camaragibe"
-                             id="cidade"
+                <p:inputText id="cidade"
                              value="#{cooperadoBean.endereco.cidade}"
                              size="30"
                              required="false"/>
@@ -143,7 +139,11 @@
     <h:panelGroup>
         <h:form>
             <p:dataTable value="#{cooperadoBean.cooperados}" var="cooperado">
-                <f:facet name="header">Lista de Cooperados</f:facet>
+                <f:facet name="header">
+                    <div align="center">
+                        Lista de Cooperados
+                    </div>
+                </f:facet>
 
                 <p:column width="2%">
                     <f:facet name="header">ID</f:facet>

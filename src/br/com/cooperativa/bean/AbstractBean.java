@@ -1,6 +1,6 @@
 package br.com.cooperativa.bean;
 
-import br.com.cooperativa.model.Log.TipoMensagem;
+import br.com.cooperativa.TipoMensagem;
 import br.com.cooperativa.service.LogService;
 
 import javax.faces.context.FacesContext;

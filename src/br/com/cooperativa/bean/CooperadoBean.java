@@ -6,14 +6,13 @@ import br.com.cooperativa.model.Telefone;
 import br.com.cooperativa.service.CooperadoService;
 import br.com.cooperativa.util.Constantes;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Named("cooperadoBean")
 @RequestScoped
@@ -52,7 +51,7 @@ public class CooperadoBean extends AbstractBean {
     public String alterar(Integer id) {
         FacesContext fc = FacesContext.getCurrentInstance();
         try {
-            cooperado = cooperadoService.carregar(id);
+            cooperado = cooperadoService.findById(id);
             fc.addMessage(MESSAGE, new FacesMessage(SUCESSO, "Cooperado carregado!"));
 
         } catch (Exception e) {

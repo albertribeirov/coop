@@ -2,6 +2,8 @@ package br.com.cooperativa.util;
 
 public abstract class Constantes {
 
+
+
     private Constantes() {
 		
 	}
@@ -12,6 +14,8 @@ public abstract class Constantes {
 	public static final String PDF_2 = "2";
 
 	public static final String HOME_COOPERATIVA = "homeCooperativa";
+	public static final String TIPO_MATERIAL_CADASTRAR = "cadastrarTipoMaterial";
+	public static final String MATERIAL_CADASTRAR = "cadastrarMaterial";
 	
 	/*
 	 * Mensagens Condomínio
@@ -24,7 +28,8 @@ public abstract class Constantes {
 	 */
 	
 	public static final String MSG_ERRO_EXISTE_CLIENTE_NOME = "Já existe um condomínio com este nome.";
-	public static final String MSG_ERRO_EXISTE_CLIENTE_EMAIL = "Já existe um condomínio com este email.";
+	public static final String MSG_ERRO_EXISTE_COOPERADO_NOME = "Já existe um cooperado com este nome.";
+	public static final String MSG_ERRO_EXISTE_COOPERADO_CPF = "Já existe um condomínio com este email.";
 	
 	/*
 	 *  Constantes de Apartamento

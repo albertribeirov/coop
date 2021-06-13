@@ -5,28 +5,33 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-public class Telefone implements Serializable {
+public class Estoque implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
 
-    @Column(length = 11, nullable = false)
-    private String numero;
+    @Column
+    private Integer quantidade;
 
-    @ManyToOne
-    @JoinColumn(name = "cooperado_id")
-    private Cooperado cooperado;
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_tipo_material")
+    private TipoMaterial tipoMaterial;
+
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_material")
+    private Material material;
 
     @Column(name = "create_time", nullable = false, updatable = false)
     @CreationTimestamp
@@ -36,34 +41,37 @@ public class Telefone implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
-    public Telefone() { }
 
-    public Telefone(String numero) {
-        this.numero = numero;
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
-    public String getNumero() {
-        return numero;
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public TipoMaterial getTipoMaterial() {
+        return tipoMaterial;
     }
 
-    public void setCooperado(Cooperado cooperado) {
-        this.cooperado = cooperado;
+    public void setTipoMaterial(TipoMaterial tipoMaterial) {
+        this.tipoMaterial = tipoMaterial;
     }
 
-    public Cooperado getCooperado() {
-        return cooperado;
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public LocalDateTime getCreateDateTime() {

@@ -1,7 +1,6 @@
 package br.com.cooperativa.service;
 
 import javax.annotation.Resource;
-import javax.enterprise.context.RequestScoped;
 import javax.transaction.Status;
 import javax.transaction.UserTransaction;
 import java.io.Serializable;
@@ -9,7 +8,6 @@ import java.io.Serializable;
 /**
  * Superclasse de todos os services da aplicação
  */
-@RequestScoped
 public abstract class Service implements Serializable {
 
 	@Resource

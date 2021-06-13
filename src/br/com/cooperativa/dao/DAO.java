@@ -10,12 +10,13 @@ public abstract class DAO implements Serializable {
 	public static final String ID = "id";
 	public static final String NOME = "nome";
 	public static final String CNPJ = "cnpj";
+	public static final String CPF = "cpf";
 	public static final String DATA = "data";
 	
 	@PersistenceContext
 	private transient EntityManager em;
 
-	public <T> T carregar(Class<T> classe, Object id) {
+	public <T> T findById(Class<T> classe, Object id) {
 		return em.find(classe, id);
 	}
 

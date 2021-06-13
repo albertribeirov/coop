@@ -1,5 +1,6 @@
 package br.com.cooperativa.model;
 
+import br.com.cooperativa.TipoMensagem;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
@@ -13,10 +14,6 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Log {
-
-	public enum TipoMensagem {
-		INFO, ERRO
-	}
 
 	/**
 	 * ID da mensagem
@@ -32,19 +29,19 @@ public class Log {
 	@Column(name = "data", nullable = false, updatable = false)
 	@CreationTimestamp
 	private LocalDateTime data;
+
+	/**
+	 * Texto da mensagem
+	 */
+	@Column(name = "mensagem", nullable = false, length = 100)
+	private String mensagem;
 	
 	/**
 	 * Tipo da mensagem de log 
 	 */
 	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_mensagem" ,nullable = false)
-	private TipoMensagem tipo;
-
-	/**
-	 * Texto da mensagem
-	 */
-	@Column(name = "mensagem", nullable = false)
-	private String mensagem;
+	@Column(name = "tipo_mensagem" ,nullable = false, length = 20)
+	private TipoMensagem tipoMensagem;
 
 	public Integer getId() {
 		return id;
@@ -62,20 +59,20 @@ public class Log {
 		this.data = data;
 	}
 
-	public TipoMensagem getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoMensagem tipo) {
-		this.tipo = tipo;
-	}
-
 	public String getMensagem() {
 		return mensagem;
 	}
 
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
+	}
+
+	public String getTipoMensagem() {
+		return tipoMensagem.name();
+	}
+
+	public void setTipoMensagem(TipoMensagem tipoMensagem) {
+		this.tipoMensagem = tipoMensagem;
 	}
 
 }
