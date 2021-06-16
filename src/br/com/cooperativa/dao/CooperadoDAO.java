@@ -13,34 +13,27 @@ public class CooperadoDAO extends DAO {
     }
 
     public boolean existeCooperadoComNome(String nome) {
-        String consulta = "SELECT COUNT(c) FROM Cooperado c WHERE c.nomeCompleto = :nome";
-        Query query = criarQuery(consulta).setParameter(NOME, nome);
-        return query.getResultList().isEmpty();
+        Query query = criarQuery("SELECT COUNT(c) FROM Cooperado c WHERE c.nomeCompleto = :nome")
+                .setParameter(NOME, nome);
+        return query.getResultList().size() > 0;
     }
 
     public boolean existeCooperadoComCpf(String cpf) {
-        String consulta = "SELECT COUNT(c) FROM Cooperado c WHERE c.cpf = :cpf";
-        Query query = criarQuery(consulta).setParameter(CPF, cpf);
-        return query.getResultList().isEmpty();
+        Query query = criarQuery("SELECT COUNT(c) FROM Cooperado c WHERE c.cpf = :cpf")
+                .setParameter(CPF, cpf);
+        return query.getResultList().size() > 0;
     }
 
     public Cooperado buscarCooperadoPorNome(String nome) {
-        String consulta = "SELECT COUNT(c) FROM Cooperado c WHERE c.nomeCompleto = :nome";
-        Query query = criarQuery(consulta).setParameter(NOME, nome);
-        return (Cooperado) query.getResultList().get(0);
+        Query query = criarQuery("SELECT c FROM Cooperado c WHERE c.nomeCompleto = :nome")
+                .setParameter(NOME, nome);
+        return (Cooperado) query.getSingleResult();
     }
 
-    public boolean buscarCooperadoPorNomeAndId(String nome, Integer id) {
-        String consulta = "SELECT COUNT(c) FROM Cooperado c WHERE c.nomeCompleto = :nome AND c.id = :id";
-        Query query = criarQuery(consulta);
-        query.setParameter(NOME, nome).setParameter(ID, id);
-        long count = (Long) query.getResultList().get(0);
-        return count > 0;
-    }
+    public List<Cooperado> buscarCooperadoPorCpf(String cpf) {
+        Query query = criarQuery("SELECT c FROM Cooperado c WHERE c.cpf = :cpf")
+                .setParameter(CPF, cpf);
+        return (List<Cooperado>) query.getResultList();
 
-    public Cooperado buscarCooperadoPorCpf(String cpf) {
-        String consulta = "SELECT COUNT(c) FROM Cooperado c WHERE c.cpf = :cpf";
-        Query query = criarQuery(consulta).setParameter(CPF, cpf);
-        return (Cooperado) query.getResultList().get(0);
     }
 }

@@ -67,16 +67,17 @@ public class MaterialBean extends AbstractBean {
         return null;
     }
 
-    /*
+    /**
      * Cancela a alteração
      */
     public String cancelar() {
         material = null;
+        tipoMaterial = null;
         materiais = materialService.listarMateriais();
-        return null;
+        return redirect(Constantes.MATERIAL_CADASTRAR);
     }
 
-    /*
+    /**
      * Exclui um cooperado
      */
     public String excluir(Integer id) {

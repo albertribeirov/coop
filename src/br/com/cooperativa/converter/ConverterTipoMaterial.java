@@ -3,7 +3,6 @@ package br.com.cooperativa.converter;
 import br.com.cooperativa.model.TipoMaterial;
 import br.com.cooperativa.service.TipoMaterialService;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -19,9 +18,7 @@ public class ConverterTipoMaterial implements Converter {
 
     @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String value) throws ConverterException {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
         if (value == null || value.equals("") || "Selecione...".equals(value)) {
-            facesContext.addMessage("message", new FacesMessage("Erro", "Material não carregado!"));
             return null;
         } else {
             Integer id = Integer.parseInt(value);

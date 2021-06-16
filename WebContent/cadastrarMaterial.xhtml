@@ -30,6 +30,7 @@
                 <p:selectOneMenu id="tpMaterial"
                                  value="#{materialBean.material.tipoMaterial}"
                                  converter="#{converterTipoMaterial}"
+                                 converterMessage="O tipo de material deve ser selecionado!"
                                  style="width:300px"
                                  required="true">
                     <f:selectItem itemLabel="Selecione..."
