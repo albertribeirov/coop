@@ -66,41 +66,31 @@
                      action="#{materialBean.cancelar}"
                      style="margin: 10px"/>
 
-    <h:panelGroup>
+
+
+    <div class="card">
         <h:form>
-            <p:dataTable value="#{materialBean.materiais}" var="mat">
-                <f:facet name="header">
-                    <div align="center">
-                        Lista de Tipos de Material
-                    </div>
-                </f:facet>
-
-                <p:column width="2%">
-                    <f:facet name="header">ID</f:facet>
-                    <h:outputText value="#{mat.id}"/>
+            <p:dataTable resizableColumns="true" var="material" value="#{materialBean.materiais}">
+                <p:column width="30%" headerText="Material" resizable="true" groupRow="true">
+                    <h:outputText style="vertical-align: middle; padding: 300px;"
+                                  value="#{material.tipoMaterial.nome}"/>
                 </p:column>
 
-                <p:column width="14%">
-                    <f:facet name="header">Nome</f:facet>
-                    <h:outputText value="#{mat.nome}"/>
+                <p:column width="60%" headerText="Nome" resizable="true">
+                    <h:outputText value="#{material.nome}"/>
                 </p:column>
 
-                <p:column width="14%">
-                    <f:facet name="header">Tipo Material</f:facet>
-                    <h:outputText value="#{mat.tipoMaterial.nome}"/>
-                </p:column>
-
-                <p:column width="7%">
+                <p:column width="10%">
                     <f:facet name="header">Ações</f:facet>
-                    <h:commandLink action="#{materialBean.alterar(mat.id)}">Alterar</h:commandLink>
+                    <h:commandLink action="#{materialBean.alterar(material.id)}">Alterar</h:commandLink>
                     |
-                    <h:commandLink action="#{materialBean.excluir(mat.id)}"
+                    <h:commandLink action="#{materialBean.excluir(material.id)}"
                                    onclick="return excluir();">Excluir</h:commandLink>
 
                 </p:column>
 
             </p:dataTable>
         </h:form>
-    </h:panelGroup>
+    </div>
 </h:body>
 </html>

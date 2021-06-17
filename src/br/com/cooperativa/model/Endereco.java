@@ -103,20 +103,14 @@ public class Endereco implements Serializable {
 
         Endereco endereco = (Endereco) o;
 
-        if (!id.equals(endereco.id)) return false;
-        if (!ruaComNumero.equals(endereco.ruaComNumero)) return false;
-        if (!bairro.equals(endereco.bairro)) return false;
-        if (!cidade.equals(endereco.cidade)) return false;
-        return Objects.equals(cep, endereco.cep);
+        if (!Objects.equals(id, endereco.id)) return false;
+        return Objects.equals(ruaComNumero, endereco.ruaComNumero);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + ruaComNumero.hashCode();
-        result = 31 * result + bairro.hashCode();
-        result = 31 * result + cidade.hashCode();
-        result = 31 * result + (cep != null ? cep.hashCode() : 0);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (ruaComNumero != null ? ruaComNumero.hashCode() : 0);
         return result;
     }
 }

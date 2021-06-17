@@ -8,7 +8,7 @@ import java.util.List;
 public class MaterialDAO extends DAO {
 
     public List<Material> listarMateriais() {
-        return criarQuery("SELECT m FROM Material m").getResultList();
+        return criarQuery("SELECT m FROM Material m ORDER BY m.tipoMaterial.id, m.nome").getResultList();
     }
 
     public Material consultarMaterialPorNome(String nome) {

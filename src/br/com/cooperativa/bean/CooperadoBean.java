@@ -81,7 +81,7 @@ public class CooperadoBean extends AbstractBean {
         }
 
         this.cooperado = null;
-        return redirect(Constantes.CLIENTE_CADASTRAR);
+        return redirect(Constantes.COOPERADO_CADASTRAR);
     }
 
     /*

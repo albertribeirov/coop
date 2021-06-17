@@ -75,21 +75,21 @@
                 <p:outputLabel for="ruaComNumero"
                                value="Rua"/>
                 <p:inputText id="ruaComNumero"
-                             value="#{cooperadoBean.endereco.ruaComNumero}"
+                             value="#{cooperadoBean.cooperado.endereco.ruaComNumero}"
                              style="width:350px"
                              required="false"/>
 
                 <p:outputLabel for="bairro"
                                value="Bairro"/>
                 <p:inputText id="bairro"
-                             value="#{cooperadoBean.endereco.bairro}"
+                             value="#{cooperadoBean.cooperado.endereco.bairro}"
                              size="30"
                              required="false"/>
 
                 <p:outputLabel for="cidade"
                                value="Cidade"/>
                 <p:inputText id="cidade"
-                             value="#{cooperadoBean.endereco.cidade}"
+                             value="#{cooperadoBean.cooperado.endereco.cidade}"
                              size="30"
                              required="false"/>
 
@@ -98,7 +98,7 @@
                 <p:inputMask mask="99.999-999"
                              id="cep"
                              converter="converterCEP"
-                             value="#{cooperadoBean.endereco.cep}"
+                             value="#{cooperadoBean.cooperado.endereco.cep}"
                              style="width:90px"
                              required="false"/>
 

@@ -15,13 +15,13 @@ public class CooperadoDAO extends DAO {
     public boolean existeCooperadoComNome(String nome) {
         Query query = criarQuery("SELECT COUNT(c) FROM Cooperado c WHERE c.nomeCompleto = :nome")
                 .setParameter(NOME, nome);
-        return query.getResultList().size() > 0;
+        return !(query.getResultList().size() > 0);
     }
 
     public boolean existeCooperadoComCpf(String cpf) {
         Query query = criarQuery("SELECT COUNT(c) FROM Cooperado c WHERE c.cpf = :cpf")
                 .setParameter(CPF, cpf);
-        return query.getResultList().size() > 0;
+        return !(query.getResultList().size() > 0);
     }
 
     public Cooperado buscarCooperadoPorNome(String nome) {

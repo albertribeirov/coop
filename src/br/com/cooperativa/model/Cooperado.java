@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class Cooperado implements Serializable {
 
     @OneToMany(mappedBy = "cooperado")
     @Column(name = "telefone_id")
-    private List<Telefone> telefones;
+    private List<Telefone> telefones = new ArrayList<>();
 
     @OneToOne
     private Endereco endereco;
