@@ -2,7 +2,6 @@ package br.com.cooperativa.bean;
 
 import br.com.cooperativa.model.Cooperado;
 import br.com.cooperativa.model.Endereco;
-import br.com.cooperativa.model.Telefone;
 import br.com.cooperativa.service.CooperadoService;
 import br.com.cooperativa.util.Constantes;
 
@@ -25,14 +24,10 @@ public class CooperadoBean extends AbstractBean {
 
     private Endereco endereco;
 
-    private List<Telefone> telefones;
-
-    private Telefone telefone;
-
     private List<Cooperado> cooperados;
 
     /*
-     * Listar cooperados
+     * Métodos
      */
     public List<Cooperado> getCooperados() {
         if (cooperados == null) {
@@ -45,9 +40,6 @@ public class CooperadoBean extends AbstractBean {
         return cooperados.stream().filter(c -> c.getNomeCompleto().toUpperCase().startsWith(query.toUpperCase())).collect(Collectors.toList());
     }
 
-    /*
-     * Altera um cooperado
-     */
     public String alterar(Integer id) {
         FacesContext fc = FacesContext.getCurrentInstance();
         try {
@@ -61,18 +53,12 @@ public class CooperadoBean extends AbstractBean {
         return null;
     }
 
-    /*
-     * Cancela a alteração
-     */
     public String cancelar() {
         cooperado = null;
         cooperados = cooperadoService.listarCooperados();
         return null;
     }
 
-    /*
-     * Exclui um cooperado
-     */
     public String excluir(Integer id) {
         try {
             cooperadoService.excluir(id);
@@ -84,9 +70,6 @@ public class CooperadoBean extends AbstractBean {
         return redirect(Constantes.COOPERADO_CADASTRAR);
     }
 
-    /*
-     * Salva um cooperado
-     */
     public String salvar() {
         FacesContext fc = FacesContext.getCurrentInstance();
         try {
@@ -106,16 +89,10 @@ public class CooperadoBean extends AbstractBean {
         }
     }
 
-    /*
-     * Cadastrar um novo cooperado
-     */
     public String novoCooperado() {
-        return Constantes.CLIENTE_NOVO;
+        return Constantes.COOPERADO_CADASTRAR;
     }
 
-    /*
-     * Obter cooperado
-     */
     public Cooperado getCooperado() {
         if (cooperado == null) {
             cooperado = new Cooperado();
@@ -125,25 +102,6 @@ public class CooperadoBean extends AbstractBean {
 
     public void setCooperado(Cooperado cooperado) {
         this.cooperado = cooperado;
-    }
-
-    public List<Telefone> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
-    }
-
-    public Telefone getTelefone() {
-        if (telefone == null) {
-            telefone = new Telefone();
-        }
-        return telefone;
-    }
-
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
     }
 
     public Endereco getEndereco() {

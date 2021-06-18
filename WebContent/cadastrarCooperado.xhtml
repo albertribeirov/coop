@@ -48,15 +48,6 @@
                     <p:tooltip id="tipCPF" for="cpf" value="O CPF deve ter 11 dígitos" position="top"/>
                 </p:inputMask>
 
-                <p:outputLabel for="telefone1"
-                               value="Telefone 1"/>
-                <p:inputMask id="telefone1"
-                             value="#{cooperadoBean.telefone}"
-                             mask="(99)9-9999-9999"
-                             required="false"
-                             converter="converterTelefone"
-                             requiredMessage="O telefone 1 deve ser preenchido."/>
-
                 <p:outputLabel for="ativo"
                                value="Ativo  "/>
                 <p:inputSwitch id="ativo"
@@ -64,6 +55,24 @@
                                offLabel="Não"
                                onLabel="Sim"
                                value="#{cooperadoBean.cooperado.ativo}"/>
+
+                <p:outputLabel for="telefone1"
+                               value="Telefone 1"/>
+                <p:inputMask id="telefone1"
+                             value="#{cooperadoBean.cooperado.telefoneUm}"
+                             mask="(99)9-9999-9999"
+                             required="false"
+                             converter="converterTelefone"
+                             requiredMessage="O telefone 1 deve ser preenchido."/>
+
+                <p:outputLabel for="telefone2"
+                               value="Telefone 2"/>
+                <p:inputMask id="telefone2"
+                             value="#{cooperadoBean.cooperado.telefoneDois}"
+                             mask="(99)9-9999-9999"
+                             required="false"
+                             converter="converterTelefone"
+                             requiredMessage="O telefone 2 deve ser preenchido."/>
 
             </h:panelGrid>
         </p:fieldset>
@@ -159,6 +168,13 @@
                     <f:facet name="header">CPF</f:facet>
                     <h:outputText value="#{cooperado.cpf}">
                         <f:converter converterId="converterCPF"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column width="10%">
+                    <f:facet name="header">Telefone</f:facet>
+                    <h:outputText value="#{cooperado.telefoneUm}">
+                        <f:converter converterId="converterTelefone"/>
                     </h:outputText>
                 </p:column>
 

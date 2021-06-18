@@ -3,17 +3,15 @@ package br.com.cooperativa.model;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,12 +25,14 @@ public class Cooperado implements Serializable {
     @Column(name = "nome_completo", length = 100, nullable = false)
     private String nomeCompleto;
 
-    @OneToMany(mappedBy = "cooperado")
-    @Column(name = "telefone_id")
-    private List<Telefone> telefones = new ArrayList<>();
+    @Column(name = "telefone_um", length = 11)
+    private String telefoneUm;
 
-    @OneToOne
-    private Endereco endereco;
+    @Column(name = "telefone_dois", length = 11)
+    private String telefoneDois;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Endereco endereco = new Endereco();
 
     @Column(length = 11)
     private String cpf;
@@ -67,12 +67,20 @@ public class Cooperado implements Serializable {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public List<Telefone> getTelefones() {
-        return telefones;
+    public String getTelefoneUm() {
+        return telefoneUm;
     }
 
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
+    public void setTelefoneUm(String telefoneUm) {
+        this.telefoneUm = telefoneUm;
+    }
+
+    public String getTelefoneDois() {
+        return telefoneDois;
+    }
+
+    public void setTelefoneDois(String telefoneDois) {
+        this.telefoneDois = telefoneDois;
     }
 
     public Endereco getEndereco() {
