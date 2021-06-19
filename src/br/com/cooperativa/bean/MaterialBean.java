@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -91,7 +92,7 @@ public class MaterialBean extends AbstractBean {
 
     public List<Material> getMateriais() {
         if (materiais == null) {
-            materiais = materialService.listarMateriais();
+            materiais = new ArrayList<>();
         }
         return materiais;
     }
@@ -115,7 +116,7 @@ public class MaterialBean extends AbstractBean {
         return materialService.consultarMaterialPorIdTipoMaterial(idTipoMaterial);
     }
 
-    public void listarMateriaisPorTipoMaterial(ValueChangeEvent event) {
+    public void listarMateriaisPorTipoMaterialEvent(ValueChangeEvent event) {
         TipoMaterial tipoMaterial = (TipoMaterial) event.getNewValue();
         materiais = materialService.consultarMaterialPorIdTipoMaterial(tipoMaterial.getId());
     }

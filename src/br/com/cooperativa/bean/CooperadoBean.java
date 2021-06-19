@@ -26,9 +26,6 @@ public class CooperadoBean extends AbstractBean {
 
     private List<Cooperado> cooperados;
 
-    /*
-     * Métodos
-     */
     public List<Cooperado> getCooperados() {
         if (cooperados == null) {
             cooperados = cooperadoService.listarCooperados();
@@ -87,10 +84,6 @@ public class CooperadoBean extends AbstractBean {
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Cooperado não salvo!"));
             return null;
         }
-    }
-
-    public String novoCooperado() {
-        return Constantes.COOPERADO_CADASTRAR;
     }
 
     public Cooperado getCooperado() {

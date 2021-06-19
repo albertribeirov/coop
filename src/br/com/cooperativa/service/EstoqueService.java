@@ -9,6 +9,7 @@ import br.com.cooperativa.model.Estoque;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Objects;
 
 public class EstoqueService extends Service {
 
@@ -37,9 +38,18 @@ public class EstoqueService extends Service {
         return EstoqueDAO.listarEstoque();
     }
 
-    public void inserir(Estoque estoque) throws ValidationException {
+    public void inserir(Estoque estoque) throws Exception {
 
-        //controladorEstoqueMaterial.inserirEstoqueMaterial(estoque);
+        if (Objects.isNull(estoque.getMaterial())) {
+            throw new ValidationException("O material não foi informado");
+        }
+
+        if (estoque.getQuantidadeEmKg() < 0 || estoque.getQuantidadeEmKg() > 9999)  {
+            throw new ValidationException("A quantidade informada é inválida");
+        }
+
+        controladorEstoqueMaterial.inserirQuantidadeMaterialEmEstoque(estoque);
+
     }
 
     public void atualizar(Estoque estoque) throws ValidationException {

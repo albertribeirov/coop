@@ -40,6 +40,14 @@ public class Material implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
+    public Material() {
+    }
+
+    public Material(String nome, TipoMaterial tipoMaterial) {
+        this.nome = nome;
+        this.tipoMaterial = tipoMaterial;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -96,5 +104,16 @@ public class Material implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", tipoMaterial=" + tipoMaterial.getNome() +
+                ", createDateTime=" + createDateTime +
+                ", updateDateTime=" + updateDateTime +
+                '}';
     }
 }

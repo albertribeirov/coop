@@ -39,6 +39,18 @@ public class TipoMaterial implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
+    public TipoMaterial() {
+    }
+
+    public TipoMaterial(String nome) {
+        this.nome = nome;
+    }
+
+    public TipoMaterial(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -95,5 +107,16 @@ public class TipoMaterial implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "TipoMaterial{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", materiais=" + materiais +
+                ", createDateTime=" + createDateTime +
+                ", updateDateTime=" + updateDateTime +
+                '}';
     }
 }

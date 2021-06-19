@@ -148,4 +148,20 @@ public class Cooperado implements Serializable {
         result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Cooperado{" +
+                "id=" + id +
+                ", nomeCompleto='" + nomeCompleto + '\'' +
+                ", telefoneUm='" + telefoneUm + '\'' +
+                ", telefoneDois='" + telefoneDois + '\'' +
+                ", endereco=" + endereco +
+                ", cpf='" + cpf + '\'' +
+                ", ativo=" + ativo +
+                ", observacao='" + observacao + '\'' +
+                ", createDateTime=" + createDateTime +
+                ", updateDateTime=" + updateDateTime +
+                '}';
+    }
 }

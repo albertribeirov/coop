@@ -113,4 +113,17 @@ public class Endereco implements Serializable {
         result = 31 * result + (ruaComNumero != null ? ruaComNumero.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "id=" + id +
+                ", ruaComNumero='" + ruaComNumero + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", cep='" + cep + '\'' +
+                ", createDateTime=" + createDateTime +
+                ", updateDateTime=" + updateDateTime +
+                '}';
+    }
 }

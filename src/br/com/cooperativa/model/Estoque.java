@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class Estoque implements Serializable {
@@ -102,5 +103,36 @@ public class Estoque implements Serializable {
 
     public void setUpdateDateTime(LocalDateTime updateDateTime) {
         this.updateDateTime = updateDateTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Estoque estoque = (Estoque) o;
+
+        if (!Objects.equals(tipoMaterial, estoque.tipoMaterial))
+            return false;
+        return Objects.equals(material, estoque.material);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = tipoMaterial != null ? tipoMaterial.hashCode() : 0;
+        result = 31 * result + (material != null ? material.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Estoque{" +
+                "id=" + id +
+                ", quantidadeEmKg=" + quantidadeEmKg +
+                ", tipoMaterial=" + tipoMaterial.getNome() +
+                ", material=" + material.getNome() +
+                ", createDateTime=" + createDateTime +
+                ", updateDateTime=" + updateDateTime +
+                '}';
     }
 }

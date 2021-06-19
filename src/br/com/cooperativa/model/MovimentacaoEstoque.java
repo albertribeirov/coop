@@ -129,4 +129,18 @@ public class MovimentacaoEstoque implements Serializable {
     public void setUpdateDateTime(LocalDateTime updateDateTime) {
         this.updateDateTime = updateDateTime;
     }
+
+    @Override
+    public String toString() {
+        return "MovimentacaoEstoque{" +
+                "id=" + id +
+                ", quantidade=" + quantidade +
+                ", tipoMovimentacaoEstoque=" + tipoMovimentacaoEstoque +
+                ", tipoMaterial=" + tipoMaterial.getNome() +
+                ", material=" + material.getNome() +
+                ", dataMovimentacao=" + dataMovimentacao +
+                ", createDateTime=" + createDateTime +
+                ", updateDateTime=" + updateDateTime +
+                '}';
+    }
 }
