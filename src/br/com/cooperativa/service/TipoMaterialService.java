@@ -45,7 +45,7 @@ public class TipoMaterialService extends Service {
 
             if (tipoMaterialDAO.existeTipoMaterialComNome(tipoMaterial.getNome())) {
                 // TODO Verificar texto da exception
-                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_NOME);
+                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_MATERIAL_MESMO_NOME);
             }
 
             tipoMaterialDAO.salvar(tipoMaterial);

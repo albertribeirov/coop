@@ -9,7 +9,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -87,7 +86,7 @@ public class EstoqueBean extends AbstractBean {
 
     public List<Estoque> getListaEstoque() {
         if (Objects.isNull(listaEstoque)) {
-            listaEstoque = new ArrayList<>();
+            listaEstoque = estoqueService.listarEstoque();
         }
         return listaEstoque;
     }

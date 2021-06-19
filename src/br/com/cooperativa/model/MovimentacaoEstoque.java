@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -38,11 +37,11 @@ public class MovimentacaoEstoque implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_tipo_material")
-    private TipoMaterial tipoMaterial = new TipoMaterial();
+    private TipoMaterial tipoMaterial;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_material")
-    private Material material = new Material();
+    private Material material;
 
     @Column(name = "data_movimentacao", nullable = false, updatable = false)
     @CreationTimestamp

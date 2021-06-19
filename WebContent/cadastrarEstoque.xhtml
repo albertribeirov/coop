@@ -28,7 +28,7 @@
                 <p:outputLabel for="tipoMaterial"
                                value="Tipo de Material"/>
                 <p:selectOneMenu id="tipoMaterial"
-                                 value="#{estoqueBean.estoque.tipoMaterial}"
+                                 value="#{estoqueBean.estoque.material.tipoMaterial}"
                                  valueChangeListener="#{materialBean.listarMateriaisPorTipoMaterial}"
                                  converter="#{converterTipoMaterial}"
                                  immediate="true"
@@ -47,7 +47,7 @@
                 </p:selectOneMenu>
 
                 <p:outputLabel for="material"
-                               value="material"/>
+                               value="Material"/>
                 <p:selectOneMenu id="material"
                                  value="#{estoqueBean.estoque.material}"
                                  converter="#{converterMaterial}"

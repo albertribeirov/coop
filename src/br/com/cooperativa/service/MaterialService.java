@@ -42,7 +42,7 @@ public class MaterialService extends Service {
         return materialDAO.listarMateriais();
     }
 
-    public void inserir(Material material) throws ValidationException {
+    public void inserir(Material material) throws Exception {
 
         if (materialDAO.existeMaterialComNome(material.getNome())) {
             throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_NOME);

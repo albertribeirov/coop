@@ -18,7 +18,7 @@ public class ControladorEstoqueMaterialBean implements ControladorEstoqueMateria
     private EntityManager entityManager;
 
     @Override
-    public void inserirMaterialAndEstoqueInicialZerado(Material material) {
+    public void inserirMaterialAndEstoqueInicialZerado(Material material) throws Exception {
         RNInserirMaterialAndEstoqueInicialZerado.getInstance().inserir(material, entityManager);
     }
 

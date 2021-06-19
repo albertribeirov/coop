@@ -7,5 +7,5 @@ import javax.ejb.Local;
 @Local
 public interface ControladorEstoqueMaterial {
 
-    void inserirMaterialAndEstoqueInicialZerado(Material material);
+    void inserirMaterialAndEstoqueInicialZerado(Material material) throws Exception;
 }

@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -25,9 +25,13 @@ public class Estoque implements Serializable {
     @Column(name = "quantidade")
     private Integer quantidadeEmKg;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_material", nullable = false)
-    private Material material = new Material();
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_tipo_material")
+    private TipoMaterial tipoMaterial;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_material")
+    private Material material;
 
     @Column(name = "create_time", nullable = false, updatable = false)
     @CreationTimestamp
@@ -41,8 +45,14 @@ public class Estoque implements Serializable {
 
     }
 
+    public Estoque(Integer quantidadeEmKg, Material material) {
+        this.quantidadeEmKg = quantidadeEmKg;
+        this.material = material;
+    }
+
     public Estoque(Integer quantidadeEmKg, TipoMaterial tipoMaterial, Material material) {
         this.quantidadeEmKg = quantidadeEmKg;
+        this.tipoMaterial = tipoMaterial;
         this.material = material;
     }
 
@@ -60,6 +70,14 @@ public class Estoque implements Serializable {
 
     public void setQuantidadeEmKg(Integer quantidadeEmKg) {
         this.quantidadeEmKg = quantidadeEmKg;
+    }
+
+    public TipoMaterial getTipoMaterial() {
+        return tipoMaterial;
+    }
+
+    public void setTipoMaterial(TipoMaterial tipoMaterial) {
+        this.tipoMaterial = tipoMaterial;
     }
 
     public Material getMaterial() {

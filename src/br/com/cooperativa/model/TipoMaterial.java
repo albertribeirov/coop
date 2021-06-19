@@ -31,9 +31,6 @@ public class TipoMaterial implements Serializable {
     @OneToMany(mappedBy = "tipoMaterial")
     private List<Material> materiais = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tipoMaterial")
-    private List<Estoque> estoques = new ArrayList<>();
-
     @Column(name = "create_time", nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createDateTime;
@@ -64,14 +61,6 @@ public class TipoMaterial implements Serializable {
 
     public void setMateriais(List<Material> materiais) {
         this.materiais = materiais;
-    }
-
-    public List<Estoque> getEstoques() {
-        return estoques;
-    }
-
-    public void setEstoques(List<Estoque> estoques) {
-        this.estoques = estoques;
     }
 
     public LocalDateTime getCreateDateTime() {

@@ -19,10 +19,10 @@ public abstract class Constantes {
 	public static final String MATERIAL_CADASTRAR = "cadastrarMaterial";
 	
 	/*
-	 * Mensagens Condomínio
+	 * Mensagens do TipoMaterial
 	 */
-	public static final String MSG_ERRO_EXISTE_CONDOMINIO_NOME = "Já existe um condomínio com este nome.";
-	public static final String MSG_ERRO_EXISTE_CONDOMINIO_CNPJ = "Já existe um condomínio com este CNPJ.";
+
+	public static final String MSG_ERRO_EXISTE_MATERIAL_MESMO_NOME = "Já existe um tipo de material com este nome.";
 
 	/*
 	 * Mensagens Cliente

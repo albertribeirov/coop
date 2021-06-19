@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -29,7 +30,7 @@ public class Material implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_tipo_material")
-    private TipoMaterial tipoMaterial = new TipoMaterial();
+    private TipoMaterial tipoMaterial;
 
     @Column(name = "create_time", nullable = false, updatable = false)
     @CreationTimestamp
