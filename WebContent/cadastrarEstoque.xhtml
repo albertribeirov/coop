@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Cadastro de Estoque</title>
+</h:head>
+
+<h:body>
+
+    <ui:decorate template="decorator.xhtml"/>
+    <h:outputScript library="scripts" name="pt.js"/>
+    <h:outputScript library="scripts" name="functions.js"/>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:form id="form_estoque" prependId="false">
+        <p:inputText value="#{estoqueBean.estoque.id}" id="idCooperadoHidden" type="hidden"/>
+        <p:growl for="message" sticky="false" showDetail="true" life="1000"/>
+
+        <br/>
+        <p:fieldset legend="Dados">
+            <h:panelGrid columns="2">
+                <p:outputLabel for="tipoMaterial"
+                               value="Tipo de Material"/>
+                <p:selectOneMenu id="tipoMaterial"
+                                 value="#{estoqueBean.estoque.tipoMaterial}"
+                                 valueChangeListener="#{materialBean.listarMateriaisPorTipoMaterial}"
+                                 converter="#{converterTipoMaterial}"
+                                 immediate="true"
+                                 style="width:300px"
+                                 required="true">
+                    <f:ajax event="valueChange"
+                            execute="@this"
+                            render="material"/>
+                    <f:selectItem itemLabel="Selecione..."
+                                  itemValue=""
+                                  noSelectionOption="false"/>
+                    <f:selectItems value="#{tipoMaterialBean.tiposMaterial}"
+                                   var="tpMaterial"
+                                   itemValue="#{tpMaterial}"
+                                   itemLabel="#{tpMaterial.nome}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="material"
+                               value="material"/>
+                <p:selectOneMenu id="material"
+                                 value="#{estoqueBean.estoque.material}"
+                                 converter="#{converterMaterial}"
+                                 style="width:300px">
+                    <f:selectItem itemLabel="Selecione..."
+                                  itemValue=""
+                                  noSelectionOption="false"/>
+                    <f:selectItems value="#{materialBean.materiais}"
+                                   var="material"
+                                   itemValue="#{material}"
+                                   itemLabel="#{material.id} - #{material.nome}"/>
+                </p:selectOneMenu>
+
+            </h:panelGrid>
+        </p:fieldset>
+    </h:form>
+
+    <p:commandButton icon="ui-icon-disk"
+                     id="salvarButton"
+                     value="Salvar"
+                     action="#{estoqueBean.salvar}"
+                     style="margin: 10px"
+                     update="form_estoque"/>
+    <p:commandButton icon="ui-icon ui-icon-circle-close"
+                     id="cancelarButton"
+                     value="Cancelar"
+                     action="#{estoqueBean.cancelar}"
+                     style="margin: 10px"
+                     update="form_estoque"/>
+
+    <h:panelGroup>
+        <h:form>
+            <p:dataTable value="#{estoqueBean.listaEstoque}" var="estoque">
+                <f:facet name="header">
+                    <div align="center">
+                        Estoque de Materiais
+                    </div>
+                </f:facet>
+
+                <p:column width="2%">
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{estoque.id}"/>
+                </p:column>
+
+                <p:column width="14%">
+                    <f:facet name="header">Quantidade</f:facet>
+                    <h:outputText value="#{estoque}"/>
+                </p:column>
+
+                <p:column width="10%">
+                    <f:facet name="header">Tipo do Material</f:facet>
+                    <h:outputText value="#{estoque}"/>
+                </p:column>
+
+                <p:column width="10%">
+                    <f:facet name="header">Material</f:facet>
+                    <h:outputText value="#{estoque}"/>
+                </p:column>
+
+                <p:column width="7%">
+                    <f:facet name="header">Ações</f:facet>
+                    <h:commandLink action="#{estoqueBean.alterar(estoque.id)}">Alterar</h:commandLink>
+                    |
+                    <h:commandLink action="#{estoqueBean.excluir(estoque.id)}"
+                                   onclick="return excluir();">Excluir</h:commandLink>
+
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </h:panelGroup>
+</h:body>
+</html>

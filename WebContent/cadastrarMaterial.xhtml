@@ -31,11 +31,12 @@
                                  value="#{materialBean.material.tipoMaterial}"
                                  converter="#{converterTipoMaterial}"
                                  converterMessage="O tipo de material deve ser selecionado!"
-                                 style="width:300px"
+                                 requiredMessage="O tipo de material deve ser selecionado!"
+                                 style="width:350px"
                                  required="true">
                     <f:selectItem itemLabel="Selecione..."
                                   itemValue="#{c}"
-                                  noSelectionOption="true"/>
+                                  noSelectionOption="true" />
                     <f:selectItems value="#{tipoMaterialBean.tiposMaterial}"
                                    var="c"
                                    itemValue="#{c}"
@@ -71,22 +72,20 @@
     <div class="card">
         <h:form>
             <p:dataTable resizableColumns="true" var="material" value="#{materialBean.materiais}">
-                <p:column width="30%" headerText="Material" resizable="true" groupRow="true">
-                    <h:outputText style="vertical-align: middle; padding: 300px;"
-                                  value="#{material.tipoMaterial.nome}"/>
+
+                <p:column width="20%" headerText="Material" style="text-align: center" resizable="true" groupRow="true">
+                    <h:outputText value="#{material.tipoMaterial.nome}"/>
                 </p:column>
 
                 <p:column width="60%" headerText="Nome" resizable="true">
                     <h:outputText value="#{material.nome}"/>
                 </p:column>
 
-                <p:column width="10%">
+                <p:column resizable="true" width="20%" style="text-align: center">
                     <f:facet name="header">Ações</f:facet>
                     <h:commandLink action="#{materialBean.alterar(material.id)}">Alterar</h:commandLink>
                     |
-                    <h:commandLink action="#{materialBean.excluir(material.id)}"
-                                   onclick="return excluir();">Excluir</h:commandLink>
-
+                    <h:commandLink action="#{materialBean.excluir(material.id)}" onclick="return excluir();">Excluir</h:commandLink>
                 </p:column>
 
             </p:dataTable>

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -35,13 +36,13 @@ public class MovimentacaoEstoque implements Serializable {
     @Column(name = "tipo_movimentacao", nullable = false)
     private TipoMovimentacaoEstoque tipoMovimentacaoEstoque;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_tipo_material")
-    private TipoMaterial tipoMaterial;
+    private TipoMaterial tipoMaterial = new TipoMaterial();
 
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_material")
-    private Material material;
+    private Material material = new Material();
 
     @Column(name = "data_movimentacao", nullable = false, updatable = false)
     @CreationTimestamp
@@ -54,6 +55,17 @@ public class MovimentacaoEstoque implements Serializable {
     @Column(name = "update_time", nullable = false)
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
+
+    public MovimentacaoEstoque() {
+
+    }
+
+    public MovimentacaoEstoque(Integer quantidade, TipoMovimentacaoEstoque tipoMovimentacaoEstoque, TipoMaterial tipoMaterial, Material material) {
+        this.quantidade = quantidade;
+        this.tipoMovimentacaoEstoque = tipoMovimentacaoEstoque;
+        this.tipoMaterial = tipoMaterial;
+        this.material = material;
+    }
 
     public Integer getId() {
         return id;

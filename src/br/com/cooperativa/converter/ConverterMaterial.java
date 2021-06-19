@@ -1,9 +1,8 @@
 package br.com.cooperativa.converter;
 
-import br.com.cooperativa.model.TipoMaterial;
-import br.com.cooperativa.service.TipoMaterialService;
+import br.com.cooperativa.model.Material;
+import br.com.cooperativa.service.MaterialService;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -12,20 +11,18 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-public class ConverterTipoMaterial implements Converter {
+public class ConverterMaterial implements Converter {
 
     @Inject
-    TipoMaterialService tipoMaterialService;
+    MaterialService materialService;
 
     @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String value) throws ConverterException {
-        if (value == null || value.equals("") || "Selecione...".equals(value)) {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            facesContext.addMessage("message", new FacesMessage("Erro", "Tipo de material não informado."));
+        if (value == null || "".equals(value) || "Selecione...".equals(value)) {
             return null;
         } else {
             Integer id = Integer.parseInt(value);
-            return tipoMaterialService.consultarTipoMaterialPorId(id);
+            return materialService.consultarMaterialPorId(id);
         }
     }
 
@@ -34,8 +31,8 @@ public class ConverterTipoMaterial implements Converter {
         if (object == null || "".equals(object)) {
             return null;
         } else {
-            TipoMaterial tipoMaterial = (TipoMaterial) object;
-            return tipoMaterial.getId().toString();
+            Material material = (Material) object;
+            return material.getId().toString();
         }
     }
 }

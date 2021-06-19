@@ -27,9 +27,9 @@ public class Material implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_tipo_material")
-    private TipoMaterial tipoMaterial;
+    private TipoMaterial tipoMaterial = new TipoMaterial();
 
     @Column(name = "create_time", nullable = false, updatable = false)
     @CreationTimestamp
@@ -39,13 +39,12 @@ public class Material implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
+    public Integer getId() {
+        return id;
+    }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getNome() {

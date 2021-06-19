@@ -33,7 +33,7 @@ public abstract class DAO implements Serializable {
 		em.remove(entity);
 	}
 
-	protected Query criarQuery(String query) {
+	public Query criarQuery(String query) {
 		return em.createQuery(query);
 	}
 }

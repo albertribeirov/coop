@@ -8,6 +8,7 @@ import br.com.cooperativa.util.Constantes;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -25,9 +26,6 @@ public class MaterialBean extends AbstractBean {
 
     private List<Material> materiais;
 
-    /**
-     * Salva um Material
-     */
     public String salvar() {
         FacesContext fc = FacesContext.getCurrentInstance();
         try {
@@ -47,13 +45,6 @@ public class MaterialBean extends AbstractBean {
         }
     }
 
-//    public List<Material> listarCooperados(String query) {
-//        return cooperados.stream().filter(c -> c.getNomeCompleto().toUpperCase().startsWith(query.toUpperCase())).collect(Collectors.toList());
-//    }
-
-    /**
-     * Altera um Material
-     */
     public String alterar(Integer id) {
         FacesContext fc = FacesContext.getCurrentInstance();
         try {
@@ -67,9 +58,6 @@ public class MaterialBean extends AbstractBean {
         return null;
     }
 
-    /**
-     * Cancela a alteração
-     */
     public String cancelar() {
         material = null;
         tipoMaterial = null;
@@ -77,9 +65,6 @@ public class MaterialBean extends AbstractBean {
         return redirect(Constantes.MATERIAL_CADASTRAR);
     }
 
-    /**
-     * Exclui um cooperado
-     */
     public String excluir(Integer id) {
         try {
             materialService.excluir(id);
@@ -88,6 +73,7 @@ public class MaterialBean extends AbstractBean {
         }
 
         this.material = null;
+        materiais = materialService.listarMateriais();
         return redirect(Constantes.CLIENTE_CADASTRAR);
     }
 
@@ -123,5 +109,14 @@ public class MaterialBean extends AbstractBean {
 
     public void setTipoMaterial(TipoMaterial tipoMaterial) {
         this.tipoMaterial = tipoMaterial;
+    }
+
+    public List<Material> listarMateriaisPorTipoMaterial(Integer idTipoMaterial) {
+        return materialService.consultarMaterialPorIdTipoMaterial(idTipoMaterial);
+    }
+
+    public void listarMateriaisPorTipoMaterial(ValueChangeEvent event) {
+        TipoMaterial tipoMaterial = (TipoMaterial) event.getNewValue();
+        materiais = materialService.consultarMaterialPorIdTipoMaterial(tipoMaterial.getId());
     }
 }

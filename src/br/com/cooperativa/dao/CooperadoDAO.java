@@ -7,7 +7,7 @@ import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class CooperadoDAO extends DAO {
-    @SuppressWarnings("unchecked")
+
     public List<Cooperado> listarCooperados() {
         return criarQuery("SELECT c FROM Cooperado c").getResultList();
     }
@@ -34,6 +34,5 @@ public class CooperadoDAO extends DAO {
         Query query = criarQuery("SELECT c FROM Cooperado c WHERE c.cpf = :cpf")
                 .setParameter(CPF, cpf);
         return (List<Cooperado>) query.getResultList();
-
     }
 }

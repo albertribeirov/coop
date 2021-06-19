@@ -2,18 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
 
-	<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:1px">
+	<p:megaMenu style="margin-top:1px">
 		
 		<p:submenu label="Cadastros" icon="ui-icon-check" >
 			<p:column>
 				<p:submenu>
+					<p:menuitem value="Entrada de Material" url="cadastrarEstoque.jsf" />
 					<p:menuitem value="Cooperado" url="cadastrarCooperado.jsf" />
 					<p:menuitem value="Material" url="cadastrarMaterial.jsf" />
 					<p:menuitem value="Tipo Material" url="cadastrarTipoMaterial.jsf" />

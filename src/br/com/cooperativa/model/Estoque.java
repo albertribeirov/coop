@@ -22,16 +22,12 @@ public class Estoque implements Serializable {
     @Column
     private Integer id;
 
-    @Column
-    private Integer quantidade;
+    @Column(name = "quantidade")
+    private Integer quantidadeEmKg;
 
     @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_tipo_material")
-    private TipoMaterial tipoMaterial;
-
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_material")
-    private Material material;
+    @JoinColumn(name = "id_material", nullable = false)
+    private Material material = new Material();
 
     @Column(name = "create_time", nullable = false, updatable = false)
     @CreationTimestamp
@@ -41,6 +37,14 @@ public class Estoque implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
 
+    public Estoque() {
+
+    }
+
+    public Estoque(Integer quantidadeEmKg, TipoMaterial tipoMaterial, Material material) {
+        this.quantidadeEmKg = quantidadeEmKg;
+        this.material = material;
+    }
 
     public Integer getId() {
         return id;
@@ -50,20 +54,12 @@ public class Estoque implements Serializable {
         this.id = id;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
+    public Integer getQuantidadeEmKg() {
+        return quantidadeEmKg;
     }
 
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public TipoMaterial getTipoMaterial() {
-        return tipoMaterial;
-    }
-
-    public void setTipoMaterial(TipoMaterial tipoMaterial) {
-        this.tipoMaterial = tipoMaterial;
+    public void setQuantidadeEmKg(Integer quantidadeEmKg) {
+        this.quantidadeEmKg = quantidadeEmKg;
     }
 
     public Material getMaterial() {

@@ -3,6 +3,7 @@ package br.com.cooperativa.util;
 public abstract class Constantes {
 
 
+    public static final String ESTOQUE_CADASTRAR = "cadastrarEstoque";
 
     private Constantes() {
 		
