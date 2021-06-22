@@ -29,7 +29,7 @@ public class LoginBean extends AbstractBean {
             return redirect(Constantes.COOPERADO_CADASTRAR);
 
         } else {
-            FacesContext.getCurrentInstance().addMessage(MESSAGE, new FacesMessage("Login inv·lido!"));
+            FacesContext.getCurrentInstance().addMessage(MESSAGE, new FacesMessage("Login inv√°lido!"));
             return null;
         }
     }
