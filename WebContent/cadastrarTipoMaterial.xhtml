@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -21,6 +21,7 @@
     <h:form id="form_tipo_material" prependId="false">
         <p:inputText value="#{tipoMaterialBean.tipoMaterial.id}" id="idTipoMaterialHidden" type="hidden"/>
         <p:growl for="message" sticky="false" showDetail="true" life="4000"/>
+
 
         <br/>
         <p:fieldset legend="Dados">
@@ -72,7 +73,7 @@
                 </p:column>
 
                 <p:column width="7%">
-                    <f:facet name="header">Ações</f:facet>
+                    <f:facet name="header">AÃ§Ãµes</f:facet>
                     <h:commandLink action="#{tipoMaterialBean.alterar(tipoMaterial.id)}">Alterar</h:commandLink>
                     |
                     <h:commandLink action="#{tipoMaterialBean.excluir(tipoMaterial.id)}"

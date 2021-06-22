@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -45,14 +45,14 @@
                              mask="999.999.999-99"
                              required="true"
                              converter="converterCPF">
-                    <p:tooltip id="tipCPF" for="cpf" value="O CPF deve ter 11 dígitos" position="top"/>
+                    <p:tooltip id="tipCPF" for="cpf" value="O CPF deve ter 11 dÃ­gitos" position="top"/>
                 </p:inputMask>
 
                 <p:outputLabel for="ativo"
                                value="Ativo  "/>
                 <p:inputSwitch id="ativo"
                                required="true"
-                               offLabel="Não"
+                               offLabel="NÃ£o"
                                onLabel="Sim"
                                value="#{cooperadoBean.cooperado.ativo}"/>
 
@@ -79,7 +79,7 @@
 
         <br/>
 
-        <p:fieldset legend="Endereço">
+        <p:fieldset legend="EndereÃ§o">
             <h:panelGrid columns="8">
                 <p:outputLabel for="ruaComNumero"
                                value="Rua"/>
@@ -116,7 +116,7 @@
 
         <br/>
 
-        <p:fieldset legend="Observações">
+        <p:fieldset legend="ObservaÃ§Ãµes">
             <h:panelGrid>
                 <p:inputTextarea id="cooperadoObservacao"
                                  rows="6"
@@ -179,12 +179,12 @@
                 </p:column>
 
                 <p:column width="20%">
-                    <f:facet name="header">Endereço</f:facet>
+                    <f:facet name="header">EndereÃ§o</f:facet>
                     <h:outputText value="#{cooperado.endereco.ruaComNumero}"/>
                 </p:column>
 
                 <p:column width="7%">
-                    <f:facet name="header">Ações</f:facet>
+                    <f:facet name="header">AÃ§Ãµes</f:facet>
                     <h:commandLink action="#{cooperadoBean.alterar(cooperado.id)}">Alterar</h:commandLink>
                     |
                     <h:commandLink action="#{cooperadoBean.excluir(cooperado.id)}"
