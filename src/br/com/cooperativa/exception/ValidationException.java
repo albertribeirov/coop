@@ -1,8 +1,5 @@
 package br.com.cooperativa.exception;
 
-/**
- * Exceção lançada quando ocorre uma validação de negócio
- */
 public class ValidationException extends Exception {
 
 	public ValidationException() {

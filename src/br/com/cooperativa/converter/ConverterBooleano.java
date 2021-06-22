@@ -10,10 +10,6 @@ public class ConverterBooleano implements Converter {
 
 	/**
 	 * <b>Método que converte "True" para "Sim" e "False" para "Não".</b>
-	 *
-	 * @param facesContext
-	 * @param uIcomponent
-	 * @return Object
 	 */
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uIcomponent, String booleano) {
@@ -22,11 +18,6 @@ public class ConverterBooleano implements Converter {
 
 	/**
 	 * <b>Método que retorna o booleano como Sim ou Não.</b>
-	 *
-	 * @param facesContext
-	 * @param uIcomponent
-	 * @param object
-	 * @return String
 	 */
 	@Override
 	public String getAsString(FacesContext facesContext, UIComponent uIcomponent, Object object) {

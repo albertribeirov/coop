@@ -20,8 +20,8 @@ public abstract class LeitorDeArquivo {
 				lista.add(linha);
 
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException exception) {
+			exception.printStackTrace();
 
 		}
 		return lista;

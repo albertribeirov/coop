@@ -33,12 +33,6 @@ public class TipoMaterialService extends Service {
         return tipoMaterialDAO.listarTiposMaterial();
     }
 
-    /**
-     * Insere um novo TipoMaterial no banco de dados
-     *
-     * @param tipoMaterial TipoMaterial a ser inserido
-     * @throws ValidationException Exceção de validação
-     */
     public void inserir(TipoMaterial tipoMaterial) throws ValidationException {
         try {
             beginTransaction();
@@ -53,18 +47,12 @@ public class TipoMaterialService extends Service {
 
             commitTransaction();
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 
-    /**
-     * Alter um TipoMaterial cadastrado no banco de dados.
-     *
-     * @param tipoMaterial TipoMaterial que será alterado
-     * @throws ValidationException Exceção de validação
-     */
     public void atualizar(TipoMaterial tipoMaterial) throws ValidationException {
         try {
             beginTransaction();
@@ -79,17 +67,12 @@ public class TipoMaterialService extends Service {
 
             commitTransaction();
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 
-    /**
-     * Exclui um TipoMaterial do banco de dados
-     *
-     * @param id Número do TipoMaterial a ser excluído
-     */
     public void excluir(Integer id) {
         try {
             beginTransaction();
@@ -100,9 +83,9 @@ public class TipoMaterialService extends Service {
 
             commitTransaction();
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 

@@ -22,9 +22,6 @@ public class TipoMaterialBean extends AbstractBean {
 
     private List<TipoMaterial> tiposMaterial;
 
-    /*
-     * Listar cooperados
-     */
     public List<TipoMaterial> listarTiposMaterial() {
         if (tiposMaterial == null) {
             tiposMaterial = tipoMaterialService.listarTiposMaterial();
@@ -32,9 +29,6 @@ public class TipoMaterialBean extends AbstractBean {
         return tiposMaterial;
     }
 
-    /**
-     * Salva um TipoMaterial
-     */
     public String salvar() {
         FacesContext fc = FacesContext.getCurrentInstance();
         try {
@@ -47,8 +41,8 @@ public class TipoMaterialBean extends AbstractBean {
             tipoMaterial = null;
             return redirect(Constantes.TIPO_MATERIAL_CADASTRAR);
 
-        } catch (Exception e) {
-            addMessageToRequest(e.getMessage());
+        } catch (Exception exception) {
+            addMessageToRequest(exception.getMessage());
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial não salvo!"));
             return null;
         }
@@ -58,34 +52,25 @@ public class TipoMaterialBean extends AbstractBean {
 //        return cooperados.stream().filter(c -> c.getNomeCompleto().toUpperCase().startsWith(query.toUpperCase())).collect(Collectors.toList());
 //    }
 
-    /**
-     * Altera um TipoMaterial
-     */
     public String alterar(Integer id) {
         FacesContext fc = FacesContext.getCurrentInstance();
         try {
             tipoMaterial = tipoMaterialService.findById(id);
             fc.addMessage(MESSAGE, new FacesMessage(SUCESSO, "TipoMaterial carregado!"));
 
-        } catch (Exception e) {
-            handleException(e);
+        } catch (Exception exception) {
+            handleException(exception);
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial não carregado!"));
         }
         return null;
     }
 
-    /*
-     * Cancela a alteração
-     */
     public String cancelar() {
         tipoMaterial = null;
         tiposMaterial = tipoMaterialService.listarTiposMaterial();
         return null;
     }
 
-    /*
-     * Exclui um cooperado
-     */
     public String excluir(Integer id) {
         try {
             tipoMaterialService.excluir(id);

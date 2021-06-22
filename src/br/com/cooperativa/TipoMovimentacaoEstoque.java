@@ -8,4 +8,8 @@ public enum TipoMovimentacaoEstoque {
     TipoMovimentacaoEstoque(int valor) {
         this.valor = valor;
     }
+
+    public int getValor() {
+        return valor;
+    }
 }

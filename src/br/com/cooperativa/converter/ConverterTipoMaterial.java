@@ -20,8 +20,6 @@ public class ConverterTipoMaterial implements Converter {
     @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String value) throws ConverterException {
         if (value == null || value.equals("") || "Selecione...".equals(value)) {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            facesContext.addMessage("message", new FacesMessage("Erro", "Tipo de material não informado."));
             return null;
         } else {
             Integer id = Integer.parseInt(value);

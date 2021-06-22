@@ -8,14 +8,6 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter("converterTelefone")
 public class ConverterTelefone implements Converter {
 
-    /**
-     * <b>Método que remove a máscara do telefone.</b>
-     *
-     * @param facesContext
-     * @param uIcomponent
-     * @param telefone
-     * @return Object
-     */
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uIcomponent, String telefone) {
         if (telefone.trim().equals("")) {
@@ -28,14 +20,6 @@ public class ConverterTelefone implements Converter {
         }
     }
 
-    /**
-     * <b>Método que retorna a String do telefone.</b>
-     *
-     * @param facesContext
-     * @param uIcomponent
-     * @param object
-     * @return String
-     */
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uIcomponent, Object object) {
 

@@ -35,8 +35,8 @@ public class EstoqueBean extends AbstractBean {
             estoque = null;
             return redirect(Constantes.ESTOQUE_CADASTRAR);
 
-        } catch (Exception e) {
-            addMessageToRequest(e.getMessage());
+        } catch (Exception exception) {
+            addMessageToRequest(exception.getMessage());
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque não salvo!"));
             return null;
         }
@@ -48,8 +48,8 @@ public class EstoqueBean extends AbstractBean {
             estoque = estoqueService.consultarEstoquePorId(id);
             fc.addMessage(MESSAGE, new FacesMessage(SUCESSO, "Estoque carregado!"));
 
-        } catch (Exception e) {
-            handleException(e);
+        } catch (Exception exception) {
+            handleException(exception);
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque não carregado!"));
         }
         return null;
@@ -58,8 +58,8 @@ public class EstoqueBean extends AbstractBean {
     public String excluir(Integer id) {
         try {
             estoqueService.excluir(id);
-        } catch (Exception e) {
-            handleException(e);
+        } catch (Exception exception) {
+            handleException(exception);
         }
 
         this.estoque = null;

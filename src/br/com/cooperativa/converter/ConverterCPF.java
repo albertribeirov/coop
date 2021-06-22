@@ -8,14 +8,6 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter("converterCPF")
 public class ConverterCPF implements Converter {
 
-	/**
-	 * <b>Método que remove a máscara do CPF.</b>
-	 *
-	 * @param facesContext
-	 * @param uIcomponent
-	 * @param cpf
-	 * @return Object
-	 */
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uIcomponent, String cpf) {
 		if (cpf.trim().equals("")) {
@@ -27,14 +19,6 @@ public class ConverterCPF implements Converter {
 		}
 	}
 
-	/**
-	 * <b>Método que retorna a String do CPF.</b>
-	 *
-	 * @param facesContext
-	 * @param uIcomponent
-	 * @param object
-	 * @return String
-	 */
 	@Override
 	public String getAsString(FacesContext facesContext, UIComponent uIcomponent, Object object) {
 		String cpf = (String) object;

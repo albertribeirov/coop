@@ -29,8 +29,8 @@ public abstract class BibliotecaFuncoes {
 				lista.add(linha);
 
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException exception) {
+			exception.printStackTrace();
 
 		}
 		return lista;

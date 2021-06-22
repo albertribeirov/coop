@@ -66,9 +66,9 @@ public class EstoqueService extends Service {
 
             commitTransaction();
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 
@@ -82,9 +82,9 @@ public class EstoqueService extends Service {
 
             commitTransaction();
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 

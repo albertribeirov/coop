@@ -43,8 +43,8 @@ public class CooperadoBean extends AbstractBean {
             cooperado = cooperadoService.findById(id);
             fc.addMessage(MESSAGE, new FacesMessage(SUCESSO, "Cooperado carregado!"));
 
-        } catch (Exception e) {
-            handleException(e);
+        } catch (Exception exception) {
+            handleException(exception);
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Cooperado não carregado!"));
         }
         return null;
@@ -59,8 +59,8 @@ public class CooperadoBean extends AbstractBean {
     public String excluir(Integer id) {
         try {
             cooperadoService.excluir(id);
-        } catch (Exception e) {
-            handleException(e);
+        } catch (Exception exception) {
+            handleException(exception);
         }
 
         this.cooperado = null;
@@ -79,8 +79,8 @@ public class CooperadoBean extends AbstractBean {
             cooperado = null;
             return redirect(Constantes.COOPERADO_CADASTRAR);
 
-        } catch (Exception e) {
-            addMessageToRequest(e.getMessage());
+        } catch (Exception exception) {
+            addMessageToRequest(exception.getMessage());
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Cooperado não salvo!"));
             return null;
         }

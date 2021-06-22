@@ -39,8 +39,8 @@ public class MaterialBean extends AbstractBean {
             material = null;
             return redirect(Constantes.MATERIAL_CADASTRAR);
 
-        } catch (Exception e) {
-            addMessageToRequest(e.getMessage());
+        } catch (Exception exception) {
+            addMessageToRequest(exception.getMessage());
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material não salvo!"));
             return null;
         }
@@ -52,8 +52,8 @@ public class MaterialBean extends AbstractBean {
             material = materialService.consultarMaterialPorId(id);
             fc.addMessage(MESSAGE, new FacesMessage(SUCESSO, "Material carregado!"));
 
-        } catch (Exception e) {
-            handleException(e);
+        } catch (Exception exception) {
+            handleException(exception);
             fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material não carregado!"));
         }
         return null;
@@ -69,8 +69,8 @@ public class MaterialBean extends AbstractBean {
     public String excluir(Integer id) {
         try {
             materialService.excluir(id);
-        } catch (Exception e) {
-            handleException(e);
+        } catch (Exception exception) {
+            handleException(exception);
         }
 
         this.material = null;

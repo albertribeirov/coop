@@ -15,20 +15,10 @@ public class MovimentacaoEstoqueService extends Service {
     @Inject
     private LogService logService;
 
-    /**
-     * Carrega um movimentacaoEstoque cadastrado no banco de dados.
-     *
-     * @param id  Id da MovimentacaoEstoque que será buscada no banco de dados
-     */
     public MovimentacaoEstoque findById(Integer id) {
         return movimentacaoEstoqueDAO.findById(MovimentacaoEstoque.class, id);
     }
 
-    /**
-     * Insere um novo MovimentacaoEstoque no banco de dados
-     *
-     * @param movimentacaoEstoque MovimentacaoEstoque a ser inserido
-     */
     public void inserir(MovimentacaoEstoque movimentacaoEstoque)  {
         try {
 
@@ -39,17 +29,12 @@ public class MovimentacaoEstoqueService extends Service {
                     movimentacaoEstoque.getQuantidade()
             ), TipoMensagem.INFO);
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 
-    /**
-     * Alter um MovimentacaoEstoque cadastrado no banco de dados.
-     *
-     * @param movimentacaoEstoque MovimentacaoEstoque que será alterado
-     */
     public void atualizar(MovimentacaoEstoque movimentacaoEstoque) {
         try {
 
@@ -61,17 +46,12 @@ public class MovimentacaoEstoqueService extends Service {
             ), TipoMensagem.INFO);
 
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 
-    /**
-     * Exclui um MovimentacaoEstoque do banco de dados
-     *
-     * @param id Número de matrícula do MovimentacaoEstoque a ser excluído
-     */
     public void excluir(Integer id) {
         try {
             beginTransaction();
@@ -82,18 +62,17 @@ public class MovimentacaoEstoqueService extends Service {
 
             commitTransaction();
 
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             rollbackTransaction();
-            throw e;
+            throw exception;
         }
     }
 
-    /**
-     * Lê todos os Apartamentos cadastrados no banco de dados
-     *
-     * @return Lista de Condomínios cadastrados
-     */
     public List<MovimentacaoEstoque> listarMovimentacaoEstoques() {
         return movimentacaoEstoqueDAO.listarMovimentacoesEstoque();
+    }
+
+    public List<MovimentacaoEstoque> consultarMovimentacoesPorMaterialAndTipoMaterialAndTipoMovimentacao(MovimentacaoEstoque movimentacaoEstoque) {
+        return movimentacaoEstoqueDAO.consultarMovimentacoesPorMaterialAndTipoMaterialAndTipoMovimentacao(movimentacaoEstoque);
     }
 }

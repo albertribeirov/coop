@@ -58,8 +58,8 @@ public class JavaMailApp {
 			/* Método para enviar a mensagem criada */
 			Transport.send(message);
 
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+		} catch (MessagingException exception) {
+			throw new RuntimeException(exception);
 		}
 	}
 }

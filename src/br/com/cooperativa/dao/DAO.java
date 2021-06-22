@@ -12,7 +12,9 @@ public abstract class DAO implements Serializable {
 	public static final String CNPJ = "cnpj";
 	public static final String CPF = "cpf";
 	public static final String DATA = "data";
-	
+	public static final String WHERE = " WHERE ";
+	public static final String AND = " AND ";
+
 	@PersistenceContext
 	private transient EntityManager em;
 

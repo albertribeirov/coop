@@ -17,7 +17,8 @@ public abstract class Constantes {
 	public static final String HOME_COOPERATIVA = "homeCooperativa";
 	public static final String TIPO_MATERIAL_CADASTRAR = "cadastrarTipoMaterial";
 	public static final String MATERIAL_CADASTRAR = "cadastrarMaterial";
-	
+	public static final String MOVIMENTACAO_ESTOQUE = "movimentacaoEstoque";
+
 	/*
 	 * Mensagens do TipoMaterial
 	 */

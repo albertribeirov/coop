@@ -2,6 +2,7 @@ package br.com.cooperativa.ejb;
 
 
 import br.com.cooperativa.model.Estoque;
+import br.com.cooperativa.model.Log;
 import br.com.cooperativa.model.Material;
 import br.com.cooperativa.model.TipoMaterial;
 import br.com.cooperativa.rn.RNInserirMaterialAndEstoqueInicialZerado;
@@ -119,5 +120,10 @@ public class ControladorEstoqueMaterialBean implements ControladorEstoqueMateria
     @Override
     public void inserirQuantidadeMaterialEmEstoque(Estoque estoque) throws Exception {
         RNInserirQuantidadeMaterialEmEstoque.getInstance().inserir(estoque, entityManager);
+    }
+
+    @Override
+    public void inserirLog(Log log) {
+        entityManager.persist(log);
     }
 }
