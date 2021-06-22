@@ -37,7 +37,7 @@ public class EstoqueBean extends AbstractBean {
 
         } catch (Exception exception) {
             addMessageToRequest(exception.getMessage());
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque n„o salvo!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque n√£o salvo!"));
             return null;
         }
     }
@@ -50,7 +50,7 @@ public class EstoqueBean extends AbstractBean {
 
         } catch (Exception exception) {
             handleException(exception);
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque n„o carregado!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque n√£o carregado!"));
         }
         return null;
     }

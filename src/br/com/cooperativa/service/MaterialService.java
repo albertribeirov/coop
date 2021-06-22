@@ -80,7 +80,7 @@ public class MaterialService extends Service {
 
             Material material = materialDAO.findById(Material.class, id);
             materialDAO.excluir(material);
-            logService.log("Material excluído: " + id, TipoMensagem.INFO);
+            logService.log("Material excluÃ­do: " + id, TipoMensagem.INFO);
 
             commitTransaction();
 

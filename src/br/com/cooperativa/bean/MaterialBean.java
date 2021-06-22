@@ -41,7 +41,7 @@ public class MaterialBean extends AbstractBean {
 
         } catch (Exception exception) {
             addMessageToRequest(exception.getMessage());
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material n„o salvo!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material n√£o salvo!"));
             return null;
         }
     }
@@ -54,7 +54,7 @@ public class MaterialBean extends AbstractBean {
 
         } catch (Exception exception) {
             handleException(exception);
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material n„o carregado!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material n√£o carregado!"));
         }
         return null;
     }

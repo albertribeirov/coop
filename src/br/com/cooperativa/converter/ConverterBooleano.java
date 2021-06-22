@@ -9,7 +9,7 @@ import javax.faces.convert.FacesConverter;
 public class ConverterBooleano implements Converter {
 
 	/**
-	 * <b>Método que converte "True" para "Sim" e "False" para "Não".</b>
+	 * <b>MÃ£todo que converte "True" para "Sim" e "False" para "NÃ£o".</b>
 	 */
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uIcomponent, String booleano) {
@@ -17,7 +17,7 @@ public class ConverterBooleano implements Converter {
 	}
 
 	/**
-	 * <b>Método que retorna o booleano como Sim ou Não.</b>
+	 * <b>MÃ£todo que retorna o booleano como Sim ou NÃ£o.</b>
 	 */
 	@Override
 	public String getAsString(FacesContext facesContext, UIComponent uIcomponent, Object object) {
@@ -27,7 +27,7 @@ public class ConverterBooleano implements Converter {
 		if (valor == Boolean.TRUE) {
 			status = "Sim";
 		} else {
-			status = "Não";
+			status = "NÃ£o";
 		}
 		return status;
 	}

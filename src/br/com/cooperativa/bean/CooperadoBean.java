@@ -45,7 +45,7 @@ public class CooperadoBean extends AbstractBean {
 
         } catch (Exception exception) {
             handleException(exception);
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Cooperado n„o carregado!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Cooperado n√£o carregado!"));
         }
         return null;
     }
@@ -81,7 +81,7 @@ public class CooperadoBean extends AbstractBean {
 
         } catch (Exception exception) {
             addMessageToRequest(exception.getMessage());
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Cooperado n„o salvo!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Cooperado n√£o salvo!"));
             return null;
         }
     }

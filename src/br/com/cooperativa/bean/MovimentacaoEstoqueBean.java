@@ -32,10 +32,10 @@ public class MovimentacaoEstoqueBean extends AbstractBean {
     public List<MovimentacaoEstoque> consultarMovimentacoesComFiltro() {
         try {
             movimentacoesEstoque = movimentacaoEstoqueService.consultarMovimentacoesPorMaterialAndTipoMaterialAndTipoMovimentacao(movimentacaoEstoque);
-            addMessage(FacesMessage.SEVERITY_INFO, SUCESSO, "Movimentacıes do estoque carregadas!");
+            addMessage(FacesMessage.SEVERITY_INFO, SUCESSO, "Movimentac√µes do estoque carregadas!");
             return movimentacoesEstoque;
         } catch (Exception exception) {
-            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Erro ao consultar as movimentacıes do estoque.");
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Erro ao consultar as movimentac√µes do estoque.");
             handleException(exception);
             return Collections.emptyList();
         }
@@ -55,7 +55,7 @@ public class MovimentacaoEstoqueBean extends AbstractBean {
 
         } catch (Exception exception) {
             addMessageToRequest(exception.getMessage());
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "movimentacaoEstoque n„o salvo!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "movimentacaoEstoque n√£o salvo!"));
             handleException(exception);
             return null;
         }
@@ -69,7 +69,7 @@ public class MovimentacaoEstoqueBean extends AbstractBean {
 
         } catch (Exception exception) {
             handleException(exception);
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque n„o carregado!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Estoque n√£o carregado!"));
         }
         return null;
     }

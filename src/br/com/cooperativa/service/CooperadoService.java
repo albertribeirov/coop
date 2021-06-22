@@ -37,7 +37,7 @@ public class CooperadoService extends Service {
             validarExisteCooperadoAndEndereco(cooperado);
 
             controladorCooperado.inserirCooperado(cooperado);
-            logService.log("Endereço inserido: " + cooperado.getEndereco().getRuaComNumero(), TipoMensagem.INFO);
+            logService.log("EndereÃ§o inserido: " + cooperado.getEndereco().getRuaComNumero(), TipoMensagem.INFO);
             logService.log("Cooperado inserido: " + cooperado.getNomeCompleto(), TipoMensagem.INFO);
 
             commitTransaction();
@@ -55,7 +55,7 @@ public class CooperadoService extends Service {
             validarExisteCooperadoAndEndereco(cooperado);
 
             controladorCooperado.alterarCooperado(cooperado);
-            logService.log("Endereço alterado: " + cooperado.getEndereco().getRuaComNumero(), TipoMensagem.INFO);
+            logService.log("EndereÃ§o alterado: " + cooperado.getEndereco().getRuaComNumero(), TipoMensagem.INFO);
             logService.log("Cooperado alterado: " + cooperado.getNomeCompleto(), TipoMensagem.INFO);
 
             commitTransaction();
@@ -76,7 +76,7 @@ public class CooperadoService extends Service {
         }
 
         if (enderecoDAO.existeEnderecoComRuaAndNumero(cooperado.getEndereco().getRuaComNumero())) {
-            throw new ValidationException("Existe endereço cadastrado com esta rua e número.");
+            throw new ValidationException("Existe endereÃ§o cadastrado com esta rua e nÃºmero.");
         }
     }
 
@@ -86,7 +86,7 @@ public class CooperadoService extends Service {
 
             Cooperado cooperado = cooperadoDAO.findById(Cooperado.class, id);
             cooperadoDAO.excluir(cooperado);
-            logService.log("Cooperado excluído: " + id, TipoMensagem.INFO);
+            logService.log("Cooperado excluÃ­do: " + id, TipoMensagem.INFO);
 
             commitTransaction();
 

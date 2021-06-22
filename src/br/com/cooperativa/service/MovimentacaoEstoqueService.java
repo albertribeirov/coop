@@ -58,7 +58,7 @@ public class MovimentacaoEstoqueService extends Service {
 
             MovimentacaoEstoque movimentacaoEstoque = movimentacaoEstoqueDAO.findById(MovimentacaoEstoque.class, id);
             movimentacaoEstoqueDAO.excluir(movimentacaoEstoque);
-            logService.log("MovimentacaoEstoque excluída: " + id, TipoMensagem.INFO);
+            logService.log("MovimentacaoEstoque excluÃ­da: " + id, TipoMensagem.INFO);
 
             commitTransaction();
 

@@ -43,7 +43,7 @@ public class TipoMaterialBean extends AbstractBean {
 
         } catch (Exception exception) {
             addMessageToRequest(exception.getMessage());
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial n„o salvo!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial n√£o salvo!"));
             return null;
         }
     }
@@ -60,7 +60,7 @@ public class TipoMaterialBean extends AbstractBean {
 
         } catch (Exception exception) {
             handleException(exception);
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial n„o carregado!"));
+            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial n√£o carregado!"));
         }
         return null;
     }

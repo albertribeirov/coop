@@ -41,11 +41,11 @@ public class EstoqueService extends Service {
     public void inserir(Estoque estoque) throws Exception {
 
         if (Objects.isNull(estoque.getMaterial())) {
-            throw new ValidationException("O material n„o foi informado");
+            throw new ValidationException("O material n√£o foi informado");
         }
 
         if (estoque.getQuantidadeEmKg() < 0 || estoque.getQuantidadeEmKg() > 9999)  {
-            throw new ValidationException("A quantidade informada È inv·lida");
+            throw new ValidationException("A quantidade informada √© inv√°lida");
         }
 
         controladorEstoqueMaterial.inserirQuantidadeMaterialEmEstoque(estoque);
@@ -78,7 +78,7 @@ public class EstoqueService extends Service {
 
             Estoque Estoque = EstoqueDAO.findById(Estoque.class, id);
             EstoqueDAO.excluir(Estoque);
-            logService.log("Estoque excluÌdo: " + id, TipoMensagem.INFO);
+            logService.log("Estoque exclu√≠do: " + id, TipoMensagem.INFO);
 
             commitTransaction();
 
