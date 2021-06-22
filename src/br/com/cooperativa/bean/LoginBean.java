@@ -1,14 +1,12 @@
 package br.com.cooperativa.bean;
 
 import br.com.cooperativa.ejb.ControladorEstoqueMaterial;
-import br.com.cooperativa.util.BatchInsert;
 import br.com.cooperativa.util.Constantes;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named("loginBean")
@@ -25,7 +23,7 @@ public class LoginBean extends AbstractBean {
 
     public String login() {
         if ("albert".equals(name) && "senha".equals(password)) {
-           controladorEstoqueMaterial.persistir();
+            controladorEstoqueMaterial.persistir();
             return redirect(Constantes.COOPERADO_CADASTRAR);
 
         } else {
