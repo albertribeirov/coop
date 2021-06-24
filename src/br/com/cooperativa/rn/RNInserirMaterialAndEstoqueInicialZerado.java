@@ -20,7 +20,7 @@ public class RNInserirMaterialAndEstoqueInicialZerado {
 
     public void inserir(Material material, EntityManager entityManager) throws Exception {
 
-        Estoque estoque = new Estoque(0, material);
+        Estoque estoque = new Estoque(0, material.getTipoMaterial(), material);
         MovimentacaoEstoque movimentacaoEstoque = new MovimentacaoEstoque(0, TipoMovimentacaoEstoque.ENTRADA, material.getTipoMaterial(), material);
 
         entityManager.persist(material);
