@@ -8,12 +8,11 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Cadastro de Cooperados</title>
 </h:head>
 
 <h:body>
-
     <ui:decorate template="decorator.xhtml"/>
     <h:outputScript library="scripts" name="pt.js"/>
     <h:outputScript library="scripts" name="functions.js"/>
@@ -80,7 +79,7 @@
         <br/>
 
         <p:fieldset legend="Endereço">
-            <h:panelGrid columns="8">
+            <h:panelGrid columns="8" id="listagem">
                 <p:outputLabel for="ruaComNumero"
                                value="Rua"/>
                 <p:inputText id="ruaComNumero"

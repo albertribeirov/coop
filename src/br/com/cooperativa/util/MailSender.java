@@ -86,7 +86,7 @@ public class MailSender {
 	
 	public Session autenticar(String usuario, String senha) {
 		Properties props = new Properties();
-		/* Par‚metros de conex„o com servidor Gmail */
+		/* Par√¢metros de conex√£o com servidor Gmail */
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -108,7 +108,7 @@ public class MailSender {
 			String nomeArquivo,
 			Session session) {
 
-		// Ativa Debug para sess„o
+		// Ativa Debug para sess√£o
 		// session.setDebug(true);
 
 		try {
@@ -116,7 +116,7 @@ public class MailSender {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("Lacqua")); // Remetente
 
-			// Destinat·rios
+			// Destinat√°rios
 			Address[] toUser = InternetAddress.parse(destinatario);
 
 			message.setRecipients(Message.RecipientType.TO, toUser);
@@ -130,7 +130,7 @@ public class MailSender {
 			messageBodyPart.setFileName(nomeArquivo);
 			multipart.addBodyPart(messageBodyPart);
 			message.setContent(multipart);
-			// MÈtodo para enviar a mensagem criada
+			// M√©todo para enviar a mensagem criada
 			Transport.send(message);
 
 		} catch (MessagingException exception) {

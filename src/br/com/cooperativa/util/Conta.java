@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 public class Conta {
 
 	/*
-	 * CabeÁalho
+	 * Cabe√ßalho
 	 */
 	private Integer id;
 	private String ano;
@@ -42,7 +42,7 @@ public class Conta {
 	private BigDecimal valorConsumoComTaxa = BigDecimal.ZERO;
 	
 	/*
-	 * HistÛrico do consumo individual
+	 * Hist√≥rico do consumo individual
 	 */
 	private BigDecimal ant1 = BigDecimal.ZERO;
 	private BigDecimal ant2 = BigDecimal.ZERO;
@@ -50,7 +50,7 @@ public class Conta {
 	private BigDecimal ant4 = BigDecimal.ZERO;
 	
 	/*
-	 * Gr·fico
+	 * Gr√°fico
 	 */
 	private OutputStream grafico;
 	

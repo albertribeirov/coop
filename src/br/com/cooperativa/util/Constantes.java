@@ -23,15 +23,15 @@ public abstract class Constantes {
 	 * Mensagens do TipoMaterial
 	 */
 
-	public static final String MSG_ERRO_EXISTE_MATERIAL_MESMO_NOME = "Já existe um tipo de material com este nome.";
+	public static final String MSG_ERRO_EXISTE_MATERIAL_MESMO_NOME = "JÃ¡ existe um tipo de material com este nome.";
 
 	/*
 	 * Mensagens Cliente
 	 */
 	
-	public static final String MSG_ERRO_EXISTE_CLIENTE_NOME = "Já existe um condomínio com este nome.";
-	public static final String MSG_ERRO_EXISTE_COOPERADO_NOME = "Já existe um cooperado com este nome.";
-	public static final String MSG_ERRO_EXISTE_COOPERADO_CPF = "Já existe um condomínio com este email.";
+	public static final String MSG_ERRO_EXISTE_CLIENTE_NOME = "JÃ¡ existe um condomÃ­nio com este nome.";
+	public static final String MSG_ERRO_EXISTE_COOPERADO_NOME = "JÃ¡ existe um cooperado com este nome.";
+	public static final String MSG_ERRO_EXISTE_COOPERADO_CPF = "JÃ¡ existe um condomÃ­nio com este email.";
 	
 	/*
 	 *  Constantes de Apartamento
@@ -48,7 +48,7 @@ public abstract class Constantes {
 	
 	public static final String PRECO_GAS_CADASTRAR = "cadastrarPreco";
 	/*
-	 *  Constantes de Condomínio
+	 *  Constantes de CondomÃ­nio
 	 */	
 	public static final String COOPERADO_CADASTRAR = "cadastrarCooperado";
 	public static final String CONDOMINIO_NOVO = "publico/CondominioCadastrar";

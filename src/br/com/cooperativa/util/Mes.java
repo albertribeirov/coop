@@ -11,7 +11,7 @@ public class Mes {
 		MESES = new Mes[12];
 		MESES[0] = new Mes(1, "Janeiro");
 		MESES[1] = new Mes(2, "Fevereiro");
-		MESES[2] = new Mes(3, "Março");
+		MESES[2] = new Mes(3, "MarÃ§o");
 		MESES[3] = new Mes(4, "Abril");
 		MESES[4] = new Mes(5, "Maio");
 		MESES[5] = new Mes(6, "Junho");

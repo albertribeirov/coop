@@ -8,3 +8,7 @@
 	font-weight: bold;
 	color: Snow;
 }
+
+tbody.ui-datatable-data tr.ui-widget-content:hover {
+	background-color: #ccc;
+}

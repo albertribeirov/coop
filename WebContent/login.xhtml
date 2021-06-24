@@ -6,7 +6,7 @@
 	  xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<title>Login</title>
 	<style type="text/css">
 body {
@@ -41,7 +41,7 @@ form {
 
 			</h:panelGrid>
 
-			<p:commandButton value="Entrar" id="logonButton" action="#{loginBean.login}" update="form" icon="ui-icon ui-icon-suitcase" />
+			<p:commandButton value="Entrar" id="logonButton" action="#{loginBean.login}" update="form" style="padding: 1px" />
 		</p:panel>
 	</h:form>
 </h:body>
