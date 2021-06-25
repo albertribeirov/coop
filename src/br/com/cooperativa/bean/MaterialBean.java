@@ -28,7 +28,6 @@ public class MaterialBean extends AbstractBean {
     private List<Material> materiais;
 
     public String salvar() {
-        FacesContext fc = FacesContext.getCurrentInstance();
         try {
             if (material.getId() == null) {
                 materialService.inserir(material);
@@ -37,24 +36,25 @@ public class MaterialBean extends AbstractBean {
             }
 
             material = null;
+            addMessage(FacesMessage.SEVERITY_INFO, SUCESSO, "Material salvo!");
             return redirect(Constantes.MATERIAL_CADASTRAR);
 
         } catch (Exception exception) {
-            addMessageToRequest(exception.getMessage());
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material não salvo!"));
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, exception.getMessage());
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Material não salvo!");
             return null;
         }
     }
 
     public String alterar(Integer id) {
-        FacesContext fc = FacesContext.getCurrentInstance();
         try {
             material = materialService.consultarMaterialPorId(id);
-            fc.addMessage(MESSAGE, new FacesMessage(SUCESSO, "Material carregado!"));
+            addMessage(FacesMessage.SEVERITY_INFO, SUCESSO, "Material carregado!");
 
         } catch (Exception exception) {
-            handleException(exception);
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "Material não carregado!"));
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, exception.getMessage());
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Material não carregado!");
+            return null;
         }
         return null;
     }
@@ -75,7 +75,7 @@ public class MaterialBean extends AbstractBean {
 
         this.material = null;
         materiais = materialService.listarMateriais();
-        return redirect(Constantes.CLIENTE_CADASTRAR);
+        return redirect(Constantes.MATERIAL_CADASTRAR);
     }
 
     public Material getMaterial() {
@@ -92,7 +92,7 @@ public class MaterialBean extends AbstractBean {
 
     public List<Material> getMateriais() {
         if (materiais == null) {
-            materiais = new ArrayList<>();
+            materiais = materialService.listarMateriais();
         }
         return materiais;
     }

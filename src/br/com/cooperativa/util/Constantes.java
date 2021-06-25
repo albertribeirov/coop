@@ -43,7 +43,8 @@ public abstract class Constantes {
      * Mensagens de erro do TipoMaterial
      */
 
-    public static final String MSG_ERRO_EXISTE_MATERIAL_MESMO_NOME = "Já existe um tipo de material com este nome.";
+    public static final String MSG_ERRO_EXISTE_TIPO_MATERIAL_MESMO_NOME = "Já existe um tipo de material com este nome.";
+    public static final String MSG_ERRO_EXISTE_MATERIAL_MESMO_NOME = "Já existe um material com este nome.";
 
     /*
      * Mensagens de erro do Cooperado

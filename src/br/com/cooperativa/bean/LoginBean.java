@@ -6,7 +6,6 @@ import br.com.cooperativa.util.Constantes;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named("loginBean")
@@ -23,11 +22,10 @@ public class LoginBean extends AbstractBean {
 
     public String login() {
         if ("albert".equals(name) && "senha".equals(password)) {
-            controladorEstoqueMaterial.persistir();
             return redirect(Constantes.COOPERADO_CADASTRAR);
 
         } else {
-            FacesContext.getCurrentInstance().addMessage(MESSAGE, new FacesMessage("Login inválido!"));
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Login inválido!");
             return null;
         }
     }

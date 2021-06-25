@@ -44,14 +44,14 @@ public class MaterialService extends Service {
 
     public void inserir(Material material) throws Exception {
 
+        beginTransaction();
+
         if (materialDAO.existeMaterialComNome(material.getNome())) {
             throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_NOME);
         }
 
         controladorEstoqueMaterial.inserirMaterialAndEstoqueInicialZerado(material);
-
         commitTransaction();
-
     }
 
     public void atualizar(Material material) throws ValidationException {

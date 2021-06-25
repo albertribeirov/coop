@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Cadastro de Estoque</title>
 </h:head>
 
@@ -82,7 +82,9 @@
 
     <h:panelGroup>
         <h:form id="form_lista_movimentacao" prependId="false">
-            <p:dataTable value="#{movimentacaoEstoqueBean.movimentacoesEstoque}" var="movimentacaoEstoque">
+            <p:dataTable value="#{movimentacaoEstoqueBean.movimentacoesEstoque}" var="movimentacaoEstoque"
+                         stickyHeader="true" stickyTopAt=".layout-topbar">
+
                 <f:facet name="header">
                     <div align="center">
                         Movimentações de Materiais
@@ -116,9 +118,9 @@
 
                 <p:column width="7%">
                     <f:facet name="header">Ações</f:facet>
-                    <p:commandButton type="button" value="Excluir"
+                    <p:commandButton type="button" value="EXCLUIR"
                                      styleClass="ui-button-raised ui-button-danger"
-                                     style="margin: 10px"
+                                     style="margin: -13px;padding: 0px; height: 29px"
                                      action="#{movimentacaoEstoqueBean.excluir(movimentacaoEstoque.id)}"
                                      onclick="return excluir();"/>
                 </p:column>

@@ -2,11 +2,15 @@ package br.com.cooperativa.service;
 
 import br.com.cooperativa.TipoMensagem;
 import br.com.cooperativa.dao.TipoMaterialDAO;
+import br.com.cooperativa.ejb.ControladorEstoqueMaterial;
 import br.com.cooperativa.exception.ValidationException;
+import br.com.cooperativa.model.Log;
 import br.com.cooperativa.model.TipoMaterial;
 import br.com.cooperativa.util.Constantes;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TipoMaterialService extends Service {
@@ -33,20 +37,17 @@ public class TipoMaterialService extends Service {
         return tipoMaterialDAO.listarTiposMaterial();
     }
 
-    public void inserir(TipoMaterial tipoMaterial) throws ValidationException {
+    public void inserir(TipoMaterial tipoMaterial) throws Exception {
         try {
             beginTransaction();
 
             if (tipoMaterialDAO.existeTipoMaterialComNome(tipoMaterial.getNome())) {
-                // TODO Verificar texto da exception
-                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_MATERIAL_MESMO_NOME);
+                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_TIPO_MATERIAL_MESMO_NOME);
             }
 
-            tipoMaterialDAO.salvar(tipoMaterial);
-            logService.log("TipoMaterial inserido: " + tipoMaterial.getNome(), TipoMensagem.INFO);
-
+            Integer idTipoMaterial = tipoMaterialDAO.salvar(tipoMaterial);
+            logService.log("Inserido Tipo de Material de id: " + idTipoMaterial.toString(), TipoMensagem.INFO);
             commitTransaction();
-
         } catch (RuntimeException exception) {
             rollbackTransaction();
             throw exception;
@@ -57,13 +58,12 @@ public class TipoMaterialService extends Service {
         try {
             beginTransaction();
 
-            if(tipoMaterialDAO.existeTipoMaterialComNome(tipoMaterial.getNome())) {
-                // TODO Verificar excecoes
-                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_COOPERADO_NOME);
+            if (tipoMaterialDAO.existeTipoMaterialComNome(tipoMaterial.getNome())) {
+                throw new ValidationException(Constantes.MSG_ERRO_EXISTE_TIPO_MATERIAL_MESMO_NOME);
             }
 
             tipoMaterialDAO.alterar(tipoMaterial);
-            logService.log("TipoMaterial alterado: " + tipoMaterial.getId(), TipoMensagem.INFO);
+            logService.log("Alterado Tipo de Material de id: " + tipoMaterial.getId(), TipoMensagem.INFO);
 
             commitTransaction();
 
@@ -79,7 +79,7 @@ public class TipoMaterialService extends Service {
 
             TipoMaterial material = tipoMaterialDAO.findById(TipoMaterial.class, id);
             tipoMaterialDAO.excluir(material);
-            logService.log("TipoMaterial excluído: " + id, TipoMensagem.INFO);
+            logService.log("Excluído Tipo de Material de id: " + id, TipoMensagem.INFO);
 
             commitTransaction();
 

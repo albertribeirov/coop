@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Cadastro de Materiais</title>
 </h:head>
 
@@ -73,8 +73,8 @@
         <h:form>
             <p:dataTable resizableColumns="true" var="material" value="#{materialBean.materiais}">
 
-                <p:column width="20%" headerText="Material" style="text-align: center" resizable="true" groupRow="true">
-                    <h:outputText value="#{material.tipoMaterial.nome}"/>
+                <p:column width="20%" styleClass="nothover" headerText="Material" style="text-align: center" resizable="true" groupRow="true">
+                    <h:outputText value="#{material.tipoMaterial.nome}" style="vertical-align: middle"/>
                 </p:column>
 
                 <p:column width="60%" headerText="Nome" resizable="true">

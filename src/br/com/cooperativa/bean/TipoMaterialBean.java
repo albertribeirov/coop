@@ -6,10 +6,10 @@ import br.com.cooperativa.util.Constantes;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Named
 @RequestScoped
@@ -30,7 +30,6 @@ public class TipoMaterialBean extends AbstractBean {
     }
 
     public String salvar() {
-        FacesContext fc = FacesContext.getCurrentInstance();
         try {
             if (tipoMaterial.getId() == null) {
                 tipoMaterialService.inserir(tipoMaterial);
@@ -39,28 +38,33 @@ public class TipoMaterialBean extends AbstractBean {
             }
 
             tipoMaterial = null;
+            addMessage(FacesMessage.SEVERITY_INFO, SUCESSO, "Tipo de Material salvo!");
             return redirect(Constantes.TIPO_MATERIAL_CADASTRAR);
 
         } catch (Exception exception) {
-            addMessageToRequest(exception.getMessage());
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial não salvo!"));
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, exception.getMessage());
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Tipo de Material não salvo!");
+            handleException(exception);
             return null;
         }
     }
 
-//    public List<TipoMaterial> listarCooperados(String query) {
-//        return cooperados.stream().filter(c -> c.getNomeCompleto().toUpperCase().startsWith(query.toUpperCase())).collect(Collectors.toList());
-//    }
+    public List<TipoMaterial> listarCooperados(String query) {
+        return tiposMaterial.stream().filter(
+                tipoMaterial -> tipoMaterial.getNome().toUpperCase().startsWith(query.toUpperCase()))
+                .collect(Collectors.toList());
+    }
 
     public String alterar(Integer id) {
-        FacesContext fc = FacesContext.getCurrentInstance();
         try {
             tipoMaterial = tipoMaterialService.findById(id);
-            fc.addMessage(MESSAGE, new FacesMessage(SUCESSO, "TipoMaterial carregado!"));
+            addMessage(FacesMessage.SEVERITY_INFO, SUCESSO, "Tipo de Material alterado!");
+            return redirect(Constantes.TIPO_MATERIAL_CADASTRAR);
 
         } catch (Exception exception) {
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, exception.getMessage());
+            addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Tipo de Material não alterado!");
             handleException(exception);
-            fc.addMessage(MESSAGE, new FacesMessage(ERRO, "TipoMaterial não carregado!"));
         }
         return null;
     }
@@ -74,12 +78,14 @@ public class TipoMaterialBean extends AbstractBean {
     public String excluir(Integer id) {
         try {
             tipoMaterialService.excluir(id);
+            return redirect(Constantes.TIPO_MATERIAL_CADASTRAR);
+
         } catch (Exception e) {
             handleException(e);
         }
 
         this.tipoMaterial = null;
-        return redirect(Constantes.CLIENTE_CADASTRAR);
+        return null;
     }
 
     public TipoMaterial getTipoMaterial() {
