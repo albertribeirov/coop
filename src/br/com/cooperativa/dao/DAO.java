@@ -14,6 +14,7 @@ public abstract class DAO implements Serializable {
 	public static final String DATA = "data";
 	public static final String WHERE = " WHERE ";
 	public static final String AND = " AND ";
+	public static final String ATIVO = "ativo";
 
 	@PersistenceContext
 	private transient EntityManager em;

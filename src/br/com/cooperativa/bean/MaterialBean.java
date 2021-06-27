@@ -7,11 +7,9 @@ import br.com.cooperativa.util.Constantes;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -42,6 +40,7 @@ public class MaterialBean extends AbstractBean {
         } catch (Exception exception) {
             addMessage(FacesMessage.SEVERITY_ERROR, ERRO, exception.getMessage());
             addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Material não salvo!");
+            handleException(exception);
             return null;
         }
     }
@@ -54,7 +53,7 @@ public class MaterialBean extends AbstractBean {
         } catch (Exception exception) {
             addMessage(FacesMessage.SEVERITY_ERROR, ERRO, exception.getMessage());
             addMessage(FacesMessage.SEVERITY_ERROR, ERRO, "Material não carregado!");
-            return null;
+            handleException(exception);
         }
         return null;
     }

@@ -35,4 +35,13 @@ public class CooperadoDAO extends DAO {
                 .setParameter(CPF, cpf);
         return (List<Cooperado>) query.getResultList();
     }
+
+    public List<Cooperado> listarCooperadosAtivos() {
+        Query query = criarQuery("SELECT c FROM Cooperado c WHERE c.ativo = 1");
+        return (List<Cooperado>) query.getResultList();
+    }
+
+    public int contarCooperadosAtivos() {
+        return (int) criarQuery("SELECT COUNT(c) FROM Cooperado c WHERE c.ativo = 1").getSingleResult();
+    }
 }

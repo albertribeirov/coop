@@ -1,10 +1,12 @@
 package br.com.cooperativa.ejb;
 
 
+import br.com.cooperativa.exception.ValidationException;
 import br.com.cooperativa.model.Estoque;
 import br.com.cooperativa.model.Material;
 import br.com.cooperativa.rn.RNInserirMaterialAndEstoqueInicialZerado;
 import br.com.cooperativa.rn.RNInserirQuantidadeMaterialEmEstoque;
+import br.com.cooperativa.rn.RNRemoverMovimentacaoEstoqueSeSaldoContinuarPositivo;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -29,4 +31,8 @@ public class ControladorEstoqueMaterialBean implements ControladorEstoqueMateria
         RNInserirQuantidadeMaterialEmEstoque.getInstance().inserir(estoque, entityManager);
     }
 
+    @Override
+    public void removerMovimentacaoEstoque(Integer id) throws ValidationException {
+        RNRemoverMovimentacaoEstoqueSeSaldoContinuarPositivo.getInstance().executar(id, entityManager);
+    }
 }
