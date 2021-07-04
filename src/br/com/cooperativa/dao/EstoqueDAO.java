@@ -7,7 +7,9 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class EstoqueDAO extends DAO {
 
-    public static String consultaEstoquePorIdMaterialAndIdTipoMaterial = "SELECT e from Estoque e WHERE e.material.id = :idMaterial AND e.tipoMaterial.id = :idTipoMaterial";
+    public static final String consultaEstoquePorIdMaterialAndIdTipoMaterial = "SELECT e from Estoque e WHERE e.material.id = :idMaterial AND e.tipoMaterial.id = :idTipoMaterial";
+    public static final String consultaQuantidadeMaterialEstoque = "SELECT SUM(e.quantidadeEmKg) FROM Estoque e WHERE e.material.id = :id";
+    public static final String consultarEstoquePorIdMaterial = "SELECT e FROM Estoque e WHERE e.material.id = :id";
 
     public List<Estoque> listarEstoque() {
         return criarQuery("SELECT e FROM Estoque e ORDER BY e.tipoMaterial.nome, e.material.nome")
@@ -25,7 +27,7 @@ public class EstoqueDAO extends DAO {
     }
 
     public Estoque consultarEstoquePorIdMaterial(Integer id) {
-        return (Estoque) criarQuery("SELECT e FROM Estoque e WHERE e.material.id = :id")
+        return (Estoque) criarQuery(consultarEstoquePorIdMaterial)
                 .setParameter(ID, id).getSingleResult();
     }
 

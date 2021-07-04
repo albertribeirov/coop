@@ -2,12 +2,17 @@ package br.com.cooperativa.service;
 
 import br.com.cooperativa.TipoMensagem;
 import br.com.cooperativa.dao.MovimentacaoEstoqueDAO;
+import br.com.cooperativa.ejb.ControladorEstoqueMaterial;
 import br.com.cooperativa.model.MovimentacaoEstoque;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import java.util.List;
 
 public class MovimentacaoEstoqueService extends Service {
+
+    @EJB
+    private ControladorEstoqueMaterial controladorEstoqueMaterial;
 
     @Inject
     private MovimentacaoEstoqueDAO movimentacaoEstoqueDAO;
@@ -52,18 +57,13 @@ public class MovimentacaoEstoqueService extends Service {
         }
     }
 
-    public void excluir(Integer id) {
+    public void excluir(Integer id) throws Exception {
         try {
-            beginTransaction();
 
-            MovimentacaoEstoque movimentacaoEstoque = movimentacaoEstoqueDAO.findById(MovimentacaoEstoque.class, id);
-            movimentacaoEstoqueDAO.excluir(movimentacaoEstoque);
+            controladorEstoqueMaterial.removerMovimentacaoEstoque(id);
             logService.log("MovimentacaoEstoque excluída: " + id, TipoMensagem.INFO);
 
-            commitTransaction();
-
         } catch (RuntimeException exception) {
-            rollbackTransaction();
             throw exception;
         }
     }
