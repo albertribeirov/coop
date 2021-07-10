@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class DAO implements Serializable {
 	
@@ -38,5 +39,18 @@ public abstract class DAO implements Serializable {
 
 	public Query criarQuery(String query) {
 		return em.createQuery(query);
+	}
+
+	protected void trocarParametroPorValor(Object valor,String parametro, Query query) {
+		if (Objects.nonNull(valor)) {
+			query.setParameter(parametro, valor);
+		}
+	}
+
+	protected void concatenarClausulaWhere(Object valor, String sqlConnector, StringBuilder consulta, String clausula) {
+		if (Objects.nonNull(valor)) {
+			consulta.append(sqlConnector).append(clausula);
+			sqlConnector = AND;
+		}
 	}
 }
