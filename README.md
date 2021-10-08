@@ -1,6 +1,6 @@
 # cooperativa
 
-Pessoas, o projeto é 100% não remunerado, código aberto (por enquanto está privado) e aceita ideias, críticas e sugestões.
+Pessoas, o projeto é 100% não remunerado, código aberto e aceita ideias, críticas e sugestões.
 
 Os princípios que eu quero seguir são o KISS (Keep It Simple, Stupid) e o YAGNI (You Aren't Gonna Need It), então vamo com calma.
 
